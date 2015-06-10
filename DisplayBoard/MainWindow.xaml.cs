@@ -20,15 +20,48 @@ namespace DisplayBoard
     /// </summary>
     public partial class MainWindow : Window
     {
+        System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
+ 
         public MainWindow()
         {
             InitializeComponent();
-            initMedia();
+            initTimer();
+            initClock();
+            initDate();
         }
 
-        private void initMedia()
+        private void initTimer()
         {
-            MediaPlayer.Source = new Uri(@"media.mp4", UriKind.Relative);
+            Timer.Tick += new EventHandler(Timer_Click);
+            Timer.Interval = new TimeSpan(0, 0, 1);
+            Timer.Start();
         }
+
+
+        public void initClock()
+        {
+            DateTime d = DateTime.Now;
+            clock.Text = d.Hour + " : " + d.Minute;
+            
+        }
+
+        private void initDate()
+        {
+            DateTime d = DateTime.Now;
+            int[] arr = { d.Year, d.Month, d.Day };
+
+            date_cn.Text = string.Join(".", arr);
+        }
+
+        private void Timer_Click(object sender, EventArgs e)
+        {
+            DateTime d = DateTime.Now;
+            clock.Text = d.Hour + " : " + d.Minute;
+
+        }
+
+        
+
+      
     }
 }
