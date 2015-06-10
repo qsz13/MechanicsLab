@@ -17,6 +17,7 @@ namespace DisplayBoard
         public static List<MyMessage> upcomingExpMsg = new List<MyMessage>();//Upcoming Experiment Messages
         public static List<MyMessage> tomorrowExpMsg = new List<MyMessage>();//Tomorrow Experiment Messages
         private static int iOngoing=0, iUpcoming=0, iTomorrow=0;
+        private static int currSlotNo=0;
 
         public static void getOngingExpMsg(List<Reservation> todayList)
         {
@@ -48,7 +49,8 @@ namespace DisplayBoard
 
                 if (resu == 0&&flag==0)
                 {
-                    ongoingExpMsg.Add(mmTemp);                    
+                    currSlotNo = item.slot.slotNo;//record slot no.
+                    ongoingExpMsg.Add(mmTemp);
                 }
                 else if (resu == 1&&flag==1)
                 {
@@ -64,10 +66,13 @@ namespace DisplayBoard
         {
             if (tomorrowList == null) return;
 
+            int i = 1;
             foreach (var item in tomorrowList)
             {
-                MyMessage mmTemp = convertResvtToMyMsg(item, 1);
+                MyMessage mmTemp = convertResvtToMyMsg(item, 2);
+                mmTemp.m_statu = "第"+i+"个 - "+mmTemp.m_statu;
                 tomorrowExpMsg.Add(mmTemp);
+                i++;
             }
             tomorrowExpSum = tomorrowExpMsg.Count;
         }
@@ -79,7 +84,11 @@ namespace DisplayBoard
         {
             MyMessage myMsg = new MyMessage();
             myMsg.m_lab = resvt.lab.name;
-            myMsg.m_statu = "时段" + resvt.slot.slotNo + "- " + ((flag == 0) ? "正在进行" : "即将进行");
+            myMsg.m_statu = "时段" + resvt.slot.slotNo;
+            if (flag != 2)
+            {
+                myMsg.m_statu += "- " + ((flag == 0) ? "正在进行" : "即将进行");
+            }
             myMsg.m_content = resvt.experiment.name;
             myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " " + resvt.clazz.teacher.name;
             myMsg.m_people = "";
