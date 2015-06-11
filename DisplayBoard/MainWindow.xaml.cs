@@ -82,8 +82,33 @@ namespace DisplayBoard
         {
             DateTime d = DateTime.Now;
             int[] arr = { d.Year, d.Month, d.Day };
-            date_cn.Text = string.Join(".", arr) + " " + d.DayOfWeek+ "今日实验 ："+"???";
-            
+            String m="";
+            switch (d.DayOfWeek)
+            { 
+                case DayOfWeek.Monday:
+                    m = "星期一";
+                    break;
+                case DayOfWeek.Tuesday:
+                    m = "星期二";
+                    break;
+                case DayOfWeek.Wednesday:
+                    m = "星期三";
+                    break;
+                case DayOfWeek.Thursday:
+                    m = "星期四";
+                    break;
+                case DayOfWeek.Friday:
+                    m = "星期五";
+                    break;
+                case DayOfWeek.Saturday:
+                    m = "星期六";
+                    break;
+                case DayOfWeek.Sunday:
+                    m = "星期日";
+                    break;
+            }
+            date_cn.Text = string.Join(".", arr) + " " + m+ "今日实验 ："+"???";
+            tomo_test.Text = "明日实验 ：" + "???";
         }
         private void change_content(Grid g,MyMessage m)
         {

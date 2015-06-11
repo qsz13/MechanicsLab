@@ -201,7 +201,7 @@
                             <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="明日预告" Margin="3"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="1">
-                            <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="明日实验：6"/>
+                            <TextBlock Name ="tomo_test" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="明日实验：6"/>
                         </Viewbox>
                     </Grid>
                     <Grid Grid.Row="1">
