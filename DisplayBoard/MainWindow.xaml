@@ -108,8 +108,11 @@
                         
                     </Grid>
                     
-                    <Grid Grid.Row="1" Background="#FF021F28" Margin="5" >
-                         <Grid.RowDefinitions>
+                    <Grid Name="view1" Grid.Row="1" Background="#FF021F28" Margin="5" >
+                        <Grid.RenderTransform>
+                            <TranslateTransform X="0" Y="0" x:Name="tt1"></TranslateTransform>
+                        </Grid.RenderTransform> 
+                        <Grid.RowDefinitions>
                             <RowDefinition Height="1*" />
                             <RowDefinition Height="1*" />
                             <RowDefinition Height="1*" />
@@ -125,10 +128,8 @@
                         </Viewbox>
                         
                     </Grid>
-                    <Grid Name ="view1" Grid.Row="2" Background="#FF021F28" Margin="5" >
-                        <Grid.RenderTransform>
-                            <TranslateTransform X="0" Y="0" x:Name="tt"></TranslateTransform>
-                        </Grid.RenderTransform>
+                    <Grid Name ="view3" Grid.Row="2" Background="#FF021F28" Margin="5" >
+                       
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*" />
                             <RowDefinition Height="1*" />
@@ -142,6 +143,26 @@
                         </Viewbox>
                         <Viewbox  Grid.Row="2">
                             <TextBlock Foreground="#FFFFD189">赵红晓／俞永辉／聂国俊／刘五祥／朱金龙</TextBlock>
+                        </Viewbox>
+
+                    </Grid>
+                    <Grid x:Name ="view3_Copy" Grid.Row="2" Background="#FF021F28" Margin="5" >
+                        <Grid.RenderTransform>
+                            <TranslateTransform X="0" Y="0" x:Name="tt3_copy"/>
+                        </Grid.RenderTransform>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Viewbox  Grid.Row="0">
+                            <TextBlock Foreground="White" Text="扭转实验室" Margin="0,5,0,0"/>
+                        </Viewbox>
+                        <Viewbox  Grid.Row="1">
+                            <TextBlock Foreground="#FFFF6701" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="时段 2- 正在进行"/><LineBreak/><Run Text="1100201 材料力学 姜建华"/></TextBlock>
+                        </Viewbox>
+                        <Viewbox  Grid.Row="2">
+                            <TextBlock Foreground="#FFFFD189"><Run Text="赵红晓／俞永辉／聂国俊／刘五祥／朱金龙"/></TextBlock>
                         </Viewbox>
 
                     </Grid>

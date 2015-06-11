@@ -69,22 +69,26 @@ namespace DisplayBoard
         private void button_click(object sender,RoutedEventArgs e)
         {
             MessageBox.Show("222233333");
-            DoubleAnimation dax = new DoubleAnimation();
-            DoubleAnimation day = new DoubleAnimation();
+            DoubleAnimation []dax = new DoubleAnimation[5];
+            DoubleAnimation []day = new DoubleAnimation[5];
             //指定起点  
-            dax.From = 0;
-            day.From = 0;
+            dax[0] = new DoubleAnimation();
+            day[0]=new DoubleAnimation();
+            dax[0].From = 300;
+            day[0].From = 0;
+
             //指定终点  
-            Random rdm = new Random();
-            dax.To = rdm.NextDouble() * 300;
-            day.To = rdm.NextDouble() * 300;
+            dax[0].To = 0;
+            day[0].To = 0;
+            
             //指定时长  
             Duration duration = new Duration(TimeSpan.FromMilliseconds(3000));
-            dax.Duration = duration;
-            day.Duration = duration;
+            dax[0].Duration = duration;
+            day[0].Duration = duration;
+
             //动画主体是TranslatTransform变形，而非Button  
-            this.tt.BeginAnimation(TranslateTransform.XProperty, dax);
-            this.tt.BeginAnimation(TranslateTransform.YProperty, day);  
+            this.tt3_copy.BeginAnimation(TranslateTransform.XProperty, dax[0]);
+            this.tt3_copy.BeginAnimation(TranslateTransform.YProperty, day[0]);  
         
         }
 
