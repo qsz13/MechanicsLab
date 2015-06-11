@@ -37,7 +37,15 @@ namespace DisplayBoard
             initTimer();
             initClock();
             initDate();
+<<<<<<< HEAD
             initAnimation();
+=======
+<<<<<<< HEAD
+            LabClient.Login("a091116", "222222");
+=======
+            this.button1.Click+= new RoutedEventHandler(button_click);
+>>>>>>> 64696cb5577511c9c3c2666285c20fe9a953ed72
+>>>>>>> origin/master
         }
         private void initAnimation()
         {

@@ -42,10 +42,21 @@
                 </WrapPanel>
 
             </Grid>
+<<<<<<< HEAD
 
             <MediaElement x:Name="MediaPlayer" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Source="media.mp4" />
             <Button x:Name ="button1" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="133,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+=======
+            
+<<<<<<< HEAD
+                <MediaElement Name="MediaPlayer" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Source="media.mp4" UnloadedBehavior="Play" ></MediaElement>
+            
+=======
+                <MediaElement Name="MediaPlayer" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Source="media.mp4" ></MediaElement>
+            <Button Name ="button1" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="133,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+>>>>>>> origin/master
 
+>>>>>>> 64696cb5577511c9c3c2666285c20fe9a953ed72
         </Grid>
 
         <Grid  Grid.Column="1">
