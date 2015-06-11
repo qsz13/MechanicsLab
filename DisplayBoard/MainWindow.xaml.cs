@@ -28,6 +28,7 @@ namespace DisplayBoard
             initTimer();
             initClock();
             initDate();
+            LabClient.Login("a091116", "222222");
         }
 
         private void initTimer()
