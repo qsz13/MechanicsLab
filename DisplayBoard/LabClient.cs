@@ -1,5 +1,4 @@
-
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
@@ -12,6 +11,7 @@ namespace DisplayBoard
 {
     class LabClient
     {
+
         private static String token = null;
         private static int semester;
         
@@ -51,6 +51,7 @@ namespace DisplayBoard
                    
                 
             });
+
 
             return true;
         }
