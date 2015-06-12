@@ -60,7 +60,7 @@ namespace DisplayBoard
         public static bool getReservation(int day)
         {
             var client = new RestClient("http://ioc.yiliang.me");
-            String request_url = String.Format("/api/reservation/semester/{0}/list/all?startDate={1}&endDate={2}",
+            String request_url = String.Format("/api/reservation/semester/{0}/list/all?startDate={1}&endDate={2}&status=APPROVED",
                 semester, DateTime.Now.AddDays(day).ToString("yyyy-MM-dd"), DateTime.Now.AddDays(day).ToString("yyyy-MM-dd"));
             var request = new RestRequest(request_url, Method.GET);
 
@@ -68,12 +68,13 @@ namespace DisplayBoard
 
             IRestResponse response = client.Execute(request);
             var content = response.Content; // raw content as string
-
+            content = content.Replace(@"@", "$");
             if (response.StatusCode.ToString() == "OK")
             {
-                JObject reservationJObject = JObject.Parse(response.Content);
+                JObject reservationJObject = JObject.Parse(content);
 
                 JArray reserVationData = (JArray)reservationJObject["data"];
+
                 List<Reservation> reservation = JsonConvert.DeserializeObject<List<Reservation>>(reserVationData.ToString(), 
                     new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
                         
