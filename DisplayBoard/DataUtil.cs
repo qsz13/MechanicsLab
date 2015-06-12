@@ -10,13 +10,13 @@ namespace DisplayBoard
     class DataUtil
     {
         public static int todayExpSum = 0;//Today Experiment Number
-        public static int tommorrowExpSum = 0;//Tommorrow Experiment Number
+        public static int tomorrowExpSum = 0;//Tomorrow Experiment Number
         public static List<Reservation> resvtTodayListCopy = null;
         public static List<Reservation> resvtTomorrowListCopy = null;
         public static List<MyMessage> ongoingExpMsg = new List<MyMessage>();//Ongoing Experiment Messages
         public static List<MyMessage> upcomingExpMsg = new List<MyMessage>();//Upcoming Experiment Messages
-        public static List<MyMessage> tommorrowExpMsg = new List<MyMessage>();//Tommorrow Experiment Messages
-        private static int iOngoing=0, iUpcoming=0, iTommorrow=0;
+        public static List<MyMessage> tomorrowExpMsg = new List<MyMessage>();//Tomorrow Experiment Messages
+        private static int iOngoing=0, iUpcoming=0, iTomorrow=0;
 
         public static void getOngingExpMsg(List<Reservation> todayList)
         {
@@ -32,13 +32,13 @@ namespace DisplayBoard
          * refreshed!! be careful
          * May exist some error?? Check
          * */
-        public static void getTodayExpMsg(List<Reservation> todayList)
+        public static void getTodayExpMsg(List<Reservation> todayList, int flag)
         {
             if (todayList == null) return;
             
             //refresh all data, clear it!
-            ongoingExpMsg.Clear();
-            upcomingExpMsg.Clear();
+            if(flag == 0) ongoingExpMsg.Clear();
+            if(flag == 1) upcomingExpMsg.Clear();
 
             foreach (var item in todayList)
             {
@@ -46,11 +46,11 @@ namespace DisplayBoard
                 if (resu == -1) continue;
                 MyMessage mmTemp = convertResvtToMyMsg(item);
 
-                if (resu == 0)
+                if (resu == 0&&flag==0)
                 {
                     ongoingExpMsg.Add(mmTemp);                    
                 }
-                else if (resu == 1)
+                else if (resu == 1&&flag==1)
                 {
                     upcomingExpMsg.Add(mmTemp);
                 }
@@ -60,16 +60,16 @@ namespace DisplayBoard
 
         }
 
-        public static void getTomorrowExpMsg(List<Reservation> tommorrowList)
+        public static void getTomorrowExpMsg(List<Reservation> tomorrowList)
         {
-            if (tommorrowList == null) return;
+            if (tomorrowList == null) return;
 
-            foreach (var item in tommorrowList)
+            foreach (var item in tomorrowList)
             {
                 MyMessage mmTemp = convertResvtToMyMsg(item);
-                tommorrowExpMsg.Add(mmTemp);
+                tomorrowExpMsg.Add(mmTemp);
             }
-            tommorrowExpSum = tommorrowExpMsg.Count;
+            tomorrowExpSum = tomorrowExpMsg.Count;
         }
 
         /**
@@ -113,16 +113,81 @@ namespace DisplayBoard
 
         public static MyMessage getNextOngoingMyMsg()
         {
-            return null;
+            //if (ongoingExpMsg.Count == 0) return getDefaultMyMsg();
+
+            if (iOngoing == ongoingExpMsg.Count)
+            {
+                iOngoing = 0;
+                //NEED REPLAY!
+                //GET NEW INFO ADN THEN RFRESH ALL MSGES
+                if (LabUtil.reservationTodayList != null)
+                {
+                    resvtTodayListCopy = LabUtil.reservationTodayList;
+                }
+                else log("Refresh at:" + DateTime.Now + " reservationTodayList is null");
+                //Refresh complete May be need lock
+                getTodayExpMsg(resvtTodayListCopy,0);
+                if (ongoingExpMsg.Count == 0) return getDefaultMyMsg();
+            }
+            MyMessage result = ongoingExpMsg.ElementAt(iOngoing);
+            iOngoing++;
+            return result;
         }
         public static MyMessage getNextUpcomingMyMsg()
         {
-            return null;
+            //if (ongoingExpMsg.Count == 0) return getDefaultMyMsg();
+
+            if (iUpcoming == upcomingExpMsg.Count)
+            {
+                iUpcoming = 0;
+                //NEED REPLAY!
+                //GET NEW INFO ADN THEN RFRESH ALL MSGES
+                if (LabUtil.reservationTodayList != null)
+                {
+                    resvtTodayListCopy = LabUtil.reservationTodayList;
+                }
+                else log("Refresh at:" + DateTime.Now + " reservationTodayList is null");
+                //Refresh complete May be need lock
+                getTodayExpMsg(resvtTodayListCopy, 1);
+                if (upcomingExpMsg.Count == 0) return getDefaultMyMsg();
+            }
+            MyMessage result = upcomingExpMsg.ElementAt(iUpcoming);
+            iUpcoming++;
+            return result;
         }
-        public static MyMessage getNextTommorrowMyMsg()
+        public static MyMessage getNextTomorrowMyMsg()
         {
-            return null;
+            //if (ongoingExpMsg.Count == 0) return getDefaultMyMsg();
+
+            if (iTomorrow == tomorrowExpMsg.Count)
+            {
+                iTomorrow = 0;
+                //NEED REPLAY!
+                //GET NEW INFO ADN THEN RFRESH ALL MSGES
+                if (LabUtil.reservationTomorrowList != null)
+                {
+                    resvtTomorrowListCopy = LabUtil.reservationTomorrowList;
+                }
+                else log("Refresh at:" + DateTime.Now + " reservationTomorrowList is null");
+                //Refresh complete May be need lock
+                getTomorrowExpMsg(resvtTomorrowListCopy);
+                if (tomorrowExpMsg.Count == 0) return getDefaultMyMsg();
+            }
+            MyMessage result = tomorrowExpMsg.ElementAt(iTomorrow);
+            iTomorrow++;
+            return result;
         }
 
+        private static MyMessage getDefaultMyMsg()
+        {
+            MyMessage mm = new MyMessage();
+            mm.m_lab = "NO_REMAIN_MSG";
+            return mm;
+        }
+
+        public static void log(String content)
+        {
+            Console.WriteLine(content);
+        }
     }
 }
