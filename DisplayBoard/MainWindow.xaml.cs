@@ -44,8 +44,6 @@ namespace DisplayBoard
             LabClient.Login("a091116", "222222");
 
             initAnimation();
-
-
         }
         private void initAnimation()
         {
