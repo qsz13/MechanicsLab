@@ -90,7 +90,7 @@ namespace DisplayBoard
             myMsg.m_statu = "时段" + resvt.slot.slotNo;
             if (flag != 2)
             {
-                myMsg.m_statu += "- " + ((flag == 0) ? "正在进行" : "即将进行");
+                myMsg.m_statu += " - " + ((flag == 0) ? "正在进行" : "即将进行");
             }
             myMsg.m_content = resvt.experiment.name;
             myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " " + resvt.clazz.teacher.name;
