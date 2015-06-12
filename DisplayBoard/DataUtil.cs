@@ -44,7 +44,7 @@ namespace DisplayBoard
             {
                 int resu = compaireTime(item.slot.startTime, item.slot.endTime);
                 if (resu == -1) continue;
-                MyMessage mmTemp = convertResvtToMyMsg(item);
+                MyMessage mmTemp = convertResvtToMyMsg(item, flag);
 
                 if (resu == 0&&flag==0)
                 {
@@ -66,7 +66,7 @@ namespace DisplayBoard
 
             foreach (var item in tomorrowList)
             {
-                MyMessage mmTemp = convertResvtToMyMsg(item);
+                MyMessage mmTemp = convertResvtToMyMsg(item, 1);
                 tomorrowExpMsg.Add(mmTemp);
             }
             tomorrowExpSum = tomorrowExpMsg.Count;
@@ -75,11 +75,11 @@ namespace DisplayBoard
         /**
          * bind data
          **/
-        private static MyMessage convertResvtToMyMsg(Reservation resvt)
+        private static MyMessage convertResvtToMyMsg(Reservation resvt, int flag)
         {
             MyMessage myMsg = new MyMessage();
             myMsg.m_lab = resvt.lab.name;
-            myMsg.m_statu = "时段"+resvt.slot.slotNo+"- "+"<正在进行?>";
+            myMsg.m_statu = "时段" + resvt.slot.slotNo + "- " + ((flag == 0) ? "正在进行" : "即将进行");
             myMsg.m_content = resvt.experiment.name;
             myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " " + resvt.clazz.teacher.name;
             myMsg.m_people = "";
