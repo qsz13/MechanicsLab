@@ -76,7 +76,7 @@
                         <Viewbox  Grid.Row="2"/>
                     </Grid>
 
-                    <Grid x:Name="view1" Grid.Row="1" Background="#FF021F28" Margin="5" >
+                    <Grid x:Name="ongoingview" Grid.Row="1" Background="#FF021F28" Margin="5" >
                         <Grid.RenderTransform>
                             <TranslateTransform X="0" Y="0" x:Name="tt1"/>
                         </Grid.RenderTransform>
@@ -104,7 +104,7 @@
                         </Viewbox>
 
                     </Grid>
-                    <Grid x:Name="view1_Copy" Grid.Row="1" Background="#FF021F28" Margin="5" >
+                    <Grid x:Name="ongoingAnimaView" Grid.Row="1" Background="#FF021F28" Margin="5" >
                         <Grid.RenderTransform>
                             <TranslateTransform X="0" Y="0" x:Name="tt1_copy"/>
                         </Grid.RenderTransform>
@@ -132,7 +132,7 @@
                         </Viewbox>
 
                     </Grid>
-                    <Grid x:Name ="view3" Grid.Row="2" Background="#FF021F28" Margin="5" >
+                    <Grid x:Name ="upcomingview" Grid.Row="2" Background="#FF021F28" Margin="5" >
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*" />
@@ -158,7 +158,7 @@
                         </Viewbox>
 
                     </Grid>
-                    <Grid x:Name ="view3_Copy" Grid.Row="2" Background="#FF021F28" Margin="5" >
+                    <Grid x:Name ="upcomingAnimaView" Grid.Row="2" Background="#FF021F28" Margin="5" >
                         <Grid.RenderTransform>
                             <TranslateTransform X="0" Y="0" x:Name="tt3_copy"/>
                         </Grid.RenderTransform>
@@ -211,7 +211,7 @@
                             <RowDefinition Height="0.1*" />
                         </Grid.RowDefinitions>
                         <Viewbox  Grid.Row="0"/>
-                        <Grid x:Name ="view4" Grid.Row="1" Background="#FF021F28" Margin="5,0,5,0"  >
+                        <Grid x:Name ="tomorrowview" Grid.Row="1" Background="#FF021F28" Margin="5,0,5,0"  >
                        
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*" />
@@ -237,7 +237,7 @@
                         </Viewbox>
 
                     </Grid>
-                    <Grid x:Name ="view4_Copy" Background="#FF021F28" Margin="5,0,5,0" Grid.Row="1" >
+                    <Grid x:Name ="tomorrowAnimaView" Background="#FF021F28" Margin="5,0,5,0" Grid.Row="1" >
                         <Grid.RenderTransform>
                             <TranslateTransform X="0" Y="0" x:Name="tt4_copy"/>
                         </Grid.RenderTransform>
