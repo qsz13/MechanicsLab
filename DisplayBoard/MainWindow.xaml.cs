@@ -40,10 +40,33 @@ namespace DisplayBoard
             initTimer();
             initClock();
             initDate();
-
+            initMedia();
             LabClient.Login("a091116", "222222");
 
             initAnimation();
+        }
+
+        private void initMedia()
+        {
+            media.MediaEnded += new RoutedEventHandler(media_MediaEnded);
+            media.Loaded += new RoutedEventHandler(media_Loaded);
+            media.Unloaded += new RoutedEventHandler(media_Unloaded);  
+        }
+
+        private void media_Unloaded(object sender, RoutedEventArgs e)
+        {
+            (sender as MediaElement).Stop();  
+        }
+
+        private void media_Loaded(object sender, RoutedEventArgs e)
+        {
+            (sender as MediaElement).Play();  
+        }
+
+        private void media_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            (sender as MediaElement).Stop();
+            (sender as MediaElement).Play();  
         }
         private void initAnimation()
         {
