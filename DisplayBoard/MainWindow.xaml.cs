@@ -107,7 +107,7 @@ namespace DisplayBoard
                     m = "星期日";
                     break;
             }
-            date_cn.Text = string.Join(".", arr) + " " + m+ "今日实验 ："+"???";
+            date_cn.Text = string.Join(".", arr) + " " + m+ " 今日实验 ："+"???";
             tomo_test.Text = "明日实验 ：" + "???";
         }
         private void change_content(Grid g,MyMessage m)
