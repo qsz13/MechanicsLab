@@ -1,0 +1,97 @@
+﻿<Window x:Class="QuerySystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" WindowState="Maximized" WindowStyle="None" >
+	<Window.Background>
+		<ImageBrush ImageSource="pack://siteoforigin:,,,/background.png"/>
+	</Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="8*" />
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="1" Source="logo.png" Margin="30,20,-30,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="4*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="1" Grid.Column="1">
+                        <TextBlock Foreground="White">国家重点实验室 同济大学力学实验中心</TextBlock>
+                    </Viewbox>
+                    <Viewbox Grid.Row="2" Grid.Column="1">
+                        <TextBlock Foreground="#FFFFD9A7">LabCom 实验预约自助查询</TextBlock>
+                    </Viewbox>
+                    <Viewbox Grid.Row="3" Grid.Column="1">
+                        <TextBlock Foreground="White">Mechanics Lab Center of Tongji University</TextBlock>
+                    </Viewbox>
+                </Grid>
+               
+                	
+                
+                
+            </Grid>
+        </Grid>
+
+        <Image Grid.Row="1" Grid.Column="1" Source="pack://siteoforigin:,,,/labimage.png" VerticalAlignment="Center" Margin="0,-30,0,0"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="6*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+   
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="10*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBox VerticalAlignment="Center" FontSize="30" ToolTip="输入工号／学号进行查询"/>
+                        </Grid>
+
+                    </Grid>
+                    
+
+                 </Grid>
+                   
+                
+            </Grid>
+        </Grid>
+
+
+    </Grid>
+</Window>
