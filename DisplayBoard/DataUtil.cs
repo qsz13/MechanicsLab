@@ -54,6 +54,9 @@ namespace DisplayBoard
                 }
                 else if (resu == 1&&flag==1)
                 {
+                    int orderSlotNo = 1;
+                    if(currSlotNo != 0) orderSlotNo = item.slot.slotNo - currSlotNo;
+                    mmTemp.m_statu = "下" + orderSlotNo + "个 - " + mmTemp.m_statu;
                     upcomingExpMsg.Add(mmTemp);
                 }
 
