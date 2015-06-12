@@ -95,13 +95,13 @@ namespace DisplayBoard
             //Console.WriteLine(dtEnd);
             if (DateTime.Compare(dtNow, dtStart) < 0)
             {
-                //No use date, Overdue: dtNow<dtStart
-                return -1;
+                //dtNow<dtStart
+                return 1;
             }
             else if (DateTime.Compare(dtEnd, dtNow) <= 0)
             {
-                //:dtEnd <= dtNow
-                return 1;
+                //No use date, Overdue:dtEnd <= dtNow
+                return -1;
             }
             else
             {
@@ -181,7 +181,11 @@ namespace DisplayBoard
         private static MyMessage getDefaultMyMsg()
         {
             MyMessage mm = new MyMessage();
-            mm.m_lab = "NO_REMAIN_MSG";
+            mm.m_lab = "没有下一个";
+            mm.m_statu = "";
+            mm.m_content = "";
+            mm.m_class = "";
+            mm.m_people = "";
             return mm;
         }
 
