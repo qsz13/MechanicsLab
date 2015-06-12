@@ -27,11 +27,13 @@ namespace DisplayBoard
     {
         
         System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
-        int elpase = 0;
+        int elpase = 3;
         string temp = "";
         DoubleAnimation dax = new DoubleAnimation();
         DoubleAnimation day = new DoubleAnimation();
-
+        MyMessage ongoing = new MyMessage();
+        MyMessage upcoming = new MyMessage();
+        MyMessage tomorrow = new MyMessage();
         public MainWindow()
         {
             InitializeComponent();
@@ -108,8 +110,8 @@ namespace DisplayBoard
                     m = "星期日";
                     break;
             }
-            date_cn.Text = string.Join(".", arr) + " " + m+ " 今日实验 ："+"???";
-            tomo_test.Text = "明日实验 ：" + "???";
+            date_cn.Text = string.Join(".", arr) + " " + m+ " 今日实验 ："+DataUtil.todayExpSum.ToString();
+            tomo_test.Text = "明日实验 ：" + DataUtil.tomorrowExpSum.ToString();
         }
         private void change_content(Grid g,MyMessage m)
         {
@@ -148,9 +150,9 @@ namespace DisplayBoard
             if (elpase == 2)
             {
                 //input you message
-                change_content(this.view1, new MyMessage());
-                change_content(this.view3, new MyMessage());
-                change_content(this.view4, new MyMessage());
+                change_content(this.view1, ongoing);
+                change_content(this.view3, upcoming);
+                change_content(this.view4, tomorrow);
             }
 
             if (elpase > 4)
@@ -166,17 +168,33 @@ namespace DisplayBoard
         private void Start_animation()
         {
             //input your message
-            change_content(this.view1_Copy, new MyMessage());
-            change_content(this.view3_Copy, new MyMessage());
-            change_content(this.view4_Copy, new MyMessage());
+            MyMessage temp;
+            temp = DataUtil.getNextOngoingMyMsg();
+            if (!temp.Equals(ongoing))
+            {
+                change_content(this.view1_Copy, temp);
+                this.tt1_copy.BeginAnimation(TranslateTransform.XProperty, dax);
+                this.tt1_copy.BeginAnimation(TranslateTransform.YProperty, day);
+                ongoing = temp;
 
-            this.tt1_copy.BeginAnimation(TranslateTransform.XProperty, dax);
-            this.tt1_copy.BeginAnimation(TranslateTransform.YProperty, day); 
-            this.tt3_copy.BeginAnimation(TranslateTransform.XProperty, dax);
-            this.tt3_copy.BeginAnimation(TranslateTransform.YProperty, day);
-            this.tt4_copy.BeginAnimation(TranslateTransform.XProperty, dax);
-            this.tt4_copy.BeginAnimation(TranslateTransform.YProperty, day);
+            }
+            temp = DataUtil.getNextTomorrowMyMsg();
+            if (!temp.Equals(tomorrow))
+            {
+                change_content(this.view3_Copy, temp);
+                this.tt3_copy.BeginAnimation(TranslateTransform.XProperty, dax);
+                this.tt3_copy.BeginAnimation(TranslateTransform.YProperty, day);
+                tomorrow = temp;
 
+            }
+            temp = DataUtil.getNextOngoingMyMsg();
+            if (!temp.Equals(upcoming))
+            {
+                change_content(this.view3_Copy, temp);
+                this.tt4_copy.BeginAnimation(TranslateTransform.XProperty, dax);
+                this.tt4_copy.BeginAnimation(TranslateTransform.YProperty, day);
+                upcoming = temp;
+            }
         }
 
         
