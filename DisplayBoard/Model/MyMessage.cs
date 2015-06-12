@@ -11,10 +11,10 @@ namespace DisplayBoard.Model
         public MyMessage(){ }
 
         public String m_lab = "1号实验室";
-        public String m_statu = "进行:";
-        public String m_content = "未知名实验";
-        public String m_class = "神秘地带";
-        public String m_people = "黑衣人";
+        public String m_statu = "时段2- 正在进行";
+        public String m_content = "实验内容";
+        public String m_class = "1100201 材料力学 蒋建华";
+        public String m_people = "老师名字";
         public String[] mm = new String[8];
         public void getmm()
         {
