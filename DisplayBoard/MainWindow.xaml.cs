@@ -168,16 +168,12 @@ namespace DisplayBoard
             initDate();
             initClock();
             elpase++;
-            if (elpase == 2)
-            {
-                //input you message
-                change_content(this.view1, ongoing);
-                change_content(this.view3, upcoming);
-                change_content(this.view4, tomorrow);
-            }
 
             if (elpase > 4)
             {
+                change_content(this.ongoingview, ongoing);
+                change_content(this.upcomingview, upcoming);
+                change_content(this.tomorrowview, tomorrow);
                 temp = clock.Text+DateTime.Now.Second;
                 elpase = 0;
                 Start_animation();
@@ -193,28 +189,29 @@ namespace DisplayBoard
             temp = DataUtil.getNextOngoingMyMsg();
             if (!temp.Equals(ongoing))
             {
-                change_content(this.view1_Copy, temp);
+                change_content(this.ongoingAnimaView, temp);
                 this.tt1_copy.BeginAnimation(TranslateTransform.XProperty, dax);
                 this.tt1_copy.BeginAnimation(TranslateTransform.YProperty, day);
                 ongoing = temp;
 
             }
-            temp = DataUtil.getNextTomorrowMyMsg();
+            temp = DataUtil.getNextUpcomingMyMsg();
+           
             if (!temp.Equals(tomorrow))
             {
-                change_content(this.view3_Copy, temp);
+                change_content(this.upcomingAnimaView, temp);
                 this.tt3_copy.BeginAnimation(TranslateTransform.XProperty, dax);
                 this.tt3_copy.BeginAnimation(TranslateTransform.YProperty, day);
-                tomorrow = temp;
-
+                
+                upcoming = temp;
             }
-            temp = DataUtil.getNextOngoingMyMsg();
+            temp = DataUtil.getNextTomorrowMyMsg();
             if (!temp.Equals(upcoming))
             {
-                change_content(this.view3_Copy, temp);
+                change_content(this.tomorrowAnimaView, temp);
                 this.tt4_copy.BeginAnimation(TranslateTransform.XProperty, dax);
                 this.tt4_copy.BeginAnimation(TranslateTransform.YProperty, day);
-                upcoming = temp;
+                tomorrow = temp;
             }
         }
 
