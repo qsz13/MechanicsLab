@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
+using DisplayBoard.Model;
 
 
 namespace DisplayBoard
@@ -119,26 +120,26 @@ namespace DisplayBoard
                 tb.Text = m.mm[i];
             }
         }
-        private class MyMessage 
-        {
-            public MyMessage(String s){
-                m_statu = m_statu + s;
-            }
-            public String m_lab = "1号实验室";
-            public String m_statu = "进行:";
-            public String m_content = "未知名实验";
-            public String m_class = "神秘地带";
-            public String m_people = "黑衣人";
-            public String[] mm=new String[8];
-            public void getmm()
-            {
-                mm[0] = m_lab;
-                mm[1] = m_statu;
-                mm[2] = m_content;
-                mm[3] = m_class;
-                mm[4] = m_people;
-            }
-        }
+        //private class MyMessage 
+        //{
+        //    public MyMessage(String s){
+        //        m_statu = m_statu + s;
+        //    }
+        //    public String m_lab = "1号实验室";
+        //    public String m_statu = "进行:";
+        //    public String m_content = "未知名实验";
+        //    public String m_class = "神秘地带";
+        //    public String m_people = "黑衣人";
+        //    public String[] mm=new String[8];
+        //    public void getmm()
+        //    {
+        //        mm[0] = m_lab;
+        //        mm[1] = m_statu;
+        //        mm[2] = m_content;
+        //        mm[3] = m_class;
+        //        mm[4] = m_people;
+        //    }
+        //}
         private void Timer_Click(object sender, EventArgs e)
         {
             initDate();
@@ -147,9 +148,9 @@ namespace DisplayBoard
             if (elpase == 2)
             {
                 //input you message
-                change_content(this.view1, new MyMessage(temp));
-                change_content(this.view3, new MyMessage(temp));
-                change_content(this.view4, new MyMessage(temp));
+                change_content(this.view1, new MyMessage());
+                change_content(this.view3, new MyMessage());
+                change_content(this.view4, new MyMessage());
             }
 
             if (elpase > 4)
@@ -165,9 +166,9 @@ namespace DisplayBoard
         private void Start_animation()
         {
             //input your message
-            change_content(this.view1_Copy, new MyMessage(temp));
-            change_content(this.view3_Copy, new MyMessage(temp));
-            change_content(this.view4_Copy, new MyMessage(temp));
+            change_content(this.view1_Copy, new MyMessage());
+            change_content(this.view3_Copy, new MyMessage());
+            change_content(this.view4_Copy, new MyMessage());
 
             this.tt1_copy.BeginAnimation(TranslateTransform.XProperty, dax);
             this.tt1_copy.BeginAnimation(TranslateTransform.YProperty, day); 
