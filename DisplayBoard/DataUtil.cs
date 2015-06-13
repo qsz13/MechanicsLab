@@ -41,10 +41,11 @@ namespace DisplayBoard
             //refresh all data, clear it!
             if (flag == 0) { 
                 ongoingExpMsg.Clear();
+            }
+            if(flag == 1) {
+                upcomingExpMsg.Clear();
                 waitongoingExpMsg.Clear();
             }
-            if(flag == 1) upcomingExpMsg.Clear();
-
             foreach (var item in todayList)
             {
                 int resu = compaireTime(item.slot.startTime, item.slot.endTime);
@@ -197,8 +198,8 @@ namespace DisplayBoard
                 {
                     iwaitOngoint = 0;
                 }
-                iwaitOngoint++;
-                return waitongoingExpMsg[iwaitOngoint];
+                
+                return waitongoingExpMsg[iwaitOngoint++];
 
             }
 
