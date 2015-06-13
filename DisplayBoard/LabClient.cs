@@ -26,6 +26,7 @@ namespace DisplayBoard
             request.AddHeader("X-Password", password);
             try
             {
+
                 client.ExecuteAsync(request, response =>
                 {
                     token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
@@ -37,6 +38,7 @@ namespace DisplayBoard
             {
                 
             }
+
             return true;
             
         }
