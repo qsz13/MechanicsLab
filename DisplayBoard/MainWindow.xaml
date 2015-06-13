@@ -30,15 +30,8 @@
                     <RowDefinition Height="2*"/>
                     
                 </Grid.RowDefinitions>
-                    <Viewbox Grid.Row="0">
-                        <Label Foreground="#FFFFD189" Content="同济大学力学试验中心欢迎您" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft MHei"></Label>
-                        
-                    </Viewbox>
-                <Viewbox Grid.Row="1">
-                        <Label Content="Welcom to Mechanics Lab Center of Tongji University" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                <Image HorizontalAlignment="Left" Margin="10,10,0,0" Grid.RowSpan="2" Width="466" RenderTransformOrigin="-0.449,-0.137" Height="85" VerticalAlignment="Top"  Source="title.png"/>
 
-                    </Viewbox>
-               
             </Grid>
             
 
