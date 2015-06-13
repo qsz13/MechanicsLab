@@ -41,8 +41,10 @@ namespace DisplayBoard
             //refresh all data, clear it!
             if (flag == 0) { 
                 ongoingExpMsg.Clear();
+                
             }
-            if(flag == 1) {
+            if (flag == 1)
+            {
                 upcomingExpMsg.Clear();
                 waitongoingExpMsg.Clear();
             }
@@ -198,7 +200,6 @@ namespace DisplayBoard
                 {
                     iwaitOngoint = 0;
                 }
-                
                 return waitongoingExpMsg[iwaitOngoint++];
 
             }

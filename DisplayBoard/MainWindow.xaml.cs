@@ -42,8 +42,13 @@ namespace DisplayBoard
             initClock();
             initDate();
             initMedia();
-            LabClient.Login("a091116", "222222");
-
+            try
+            {
+                LabClient.Login("a091116", "222222");
+            }
+            catch {
+                Console.WriteLine("login fail");
+            }
             initAnimation();
         }
 
@@ -71,7 +76,6 @@ namespace DisplayBoard
         }
         private void initAnimation()
         {
-
             //指定起点  
             dax= new DoubleAnimation();
             day = new DoubleAnimation();
@@ -180,9 +184,11 @@ namespace DisplayBoard
                 Start_animation();
             }
             Logintime++;
-            if(Logintime >3000)
+            if (Logintime > 3000)
+            {
                 LabClient.Login("a091116", "222222");
-
+                Logintime = 0;
+            }
         }
 
         private void Start_animation()
