@@ -30,7 +30,7 @@
                     <RowDefinition Height="2*"/>
                     
                 </Grid.RowDefinitions>
-                <Image HorizontalAlignment="Left" Margin="10,10,0,0" Grid.RowSpan="2" Width="466" RenderTransformOrigin="-0.449,-0.137" Height="85" VerticalAlignment="Top"  Source="title.png"/>
+                <Image HorizontalAlignment="Left" Margin="0,0,0,0" Grid.RowSpan="2"  RenderTransformOrigin="-0.449,-0.137" VerticalAlignment="Top"  Source="title.png"/>
 
             </Grid>
             
