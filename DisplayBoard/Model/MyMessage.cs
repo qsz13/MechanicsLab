@@ -24,5 +24,18 @@ namespace DisplayBoard.Model
             mm[3] = m_class;
             mm[4] = m_people;
         }
+        public override bool Equals(object obj)
+        {
+
+            MyMessage a = obj as MyMessage;
+            a.getmm();
+            this.getmm();
+            for (int i = 0; i < 5; i++)
+            {
+                if (!mm[0].Equals(a.mm[0]))
+                    return false;
+            }
+            return true;
+        }
     }
 }
