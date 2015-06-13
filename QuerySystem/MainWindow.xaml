@@ -57,7 +57,7 @@
         </Grid>
 
         <Image Grid.Row="1" Grid.Column="1" Source="pack://siteoforigin:,,,/labimage.png" VerticalAlignment="Center" Margin="0,-30,0,0"/>
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Name="InputSearchIDView" Grid.Row="1" Grid.Column="1" d:IsHidden="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="6*" />
@@ -141,33 +141,43 @@
 
 
                 </Grid>
-                <Grid Grid.Column="2" HorizontalAlignment="Left"  Margin="0" VerticalAlignment="Top">
+                <Grid Grid.Column="2"  Margin="0" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*" />
                         <RowDefinition Height="10*" />
                     </Grid.RowDefinitions>
-                    <Button Click="search_click" BorderThickness="0" Content="" HorizontalAlignment="Left" Margin="5" Grid.Row="0" VerticalAlignment="Top" Width="100" Height="45" FontSize="20" FontFamily="Adobe Fan Heiti Std B">
+                    <Button Click="search_click" BorderThickness="0" Margin="15,5,15,5" Grid.Row="0"  FontSize="20" FontFamily="Adobe Fan Heiti Std B">
                         <Button.Background>
                             <ImageBrush ImageSource="search.png"/>
                         </Button.Background>
+                        <TextBlock Text="查询" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" FontSize="30" />
 
                     </Button>
-                    <TextBlock Margin="1" Text="查询" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" FontSize="30" />
                 </Grid>
 
             </Grid>
         </Grid>
-        <Grid  Margin="0" Grid.Row="1" Grid.Column="1" d:IsHidden="True">
+        <Grid Name="SearchResultView" Margin="0" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
+                <RowDefinition Height="1.2*" />
                 <RowDefinition Height="10*" />
             </Grid.RowDefinitions>
             <Grid Margin="0" Grid.Row="0">
-                <Image Source="result_title.png" Margin="0"/>
+                <Image Source="result_title.png" Margin="0" Stretch="Fill"/>
                 
                 
             </Grid>
-            <DataGrid Margin="0" Grid.Row="1" />
+            <Grid Background="White" Margin="0" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="2*"/>
+                    
+                </Grid.ColumnDefinitions>
+
+            </Grid>
+            <DataGrid Margin="0" Grid.Row="2" />
         </Grid>
 
 

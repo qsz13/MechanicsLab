@@ -28,6 +28,7 @@ namespace DisplayBoard
         
         System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
         int elpase = 3;
+        int Logintime = 0;
         string temp = "";
         DoubleAnimation dax = new DoubleAnimation();
         DoubleAnimation day = new DoubleAnimation();
@@ -178,7 +179,9 @@ namespace DisplayBoard
                 elpase = 0;
                 Start_animation();
             }
-            
+            Logintime++;
+            if(Logintime >3000)
+                LabClient.Login("a091116", "222222");
 
         }
 

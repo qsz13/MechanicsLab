@@ -24,6 +24,7 @@ namespace QuerySystem
         {
             InitializeComponent();
             this.keyboard.Visibility = Visibility.Hidden;
+            this.SearchResultView.Visibility = Visibility.Hidden;
         }
 
         private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
@@ -35,6 +36,15 @@ namespace QuerySystem
         private void search_click(object sender, RoutedEventArgs e)
         {
             this.keyboard.Visibility = Visibility.Hidden;
+            //input user id exist?
+            String a = this.input.Text;
+            bool UserExist=true;
+            if(UserExist==true)
+                this.SearchResultView.Visibility=Visibility.Visible;
+        }
+        private void close_search_view(object sender, RoutedEventArgs e)
+        {
+            this.SearchResultView.Visibility = Visibility.Visible;
         }
         //input keyboard listener
         private void Button_Click_1(object sender, RoutedEventArgs e)
