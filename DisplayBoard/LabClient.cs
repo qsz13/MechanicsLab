@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DisplayBoard
 {
@@ -23,12 +24,19 @@ namespace DisplayBoard
             var request = new RestRequest("api/token", Method.POST);
             request.AddHeader("X-Username", username);
             request.AddHeader("X-Password", password);
-            client.ExecuteAsync(request, response =>
+            try
             {
-                token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
-                getSemester();
-            });
-
+                client.ExecuteAsync(request, response =>
+                {
+                    token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
+                    getSemester();
+                    
+                });
+            }
+            catch
+            {
+                
+            }
             return true;
             
         }

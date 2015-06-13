@@ -88,6 +88,7 @@ namespace DisplayBoard
             Duration duration = new Duration(TimeSpan.FromMilliseconds(3000));
             dax.Duration = duration;
             day.Duration = duration;
+            
         }
         private void initTimer()
         {

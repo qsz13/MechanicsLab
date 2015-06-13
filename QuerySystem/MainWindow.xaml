@@ -33,7 +33,7 @@
         </Grid>
 
         <Image Grid.Row="1" Grid.Column="1" Source="pack://siteoforigin:,,,/labimage.png" VerticalAlignment="Center" Margin="0,-30,0,0"/>
-        <Grid Name="InputSearchIDView" Grid.Row="1" Grid.Column="1" d:IsHidden="True">
+        <Grid Name="InputSearchIDView" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="6*" />
@@ -138,15 +138,20 @@
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="1.2*" />
                 <RowDefinition Height="10*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
+            <Image Source="result_title.png" Margin="0" Stretch="Fill"/>
             <Grid Margin="0" Grid.Row="0">
-                <Image Source="result_title.png" Margin="0" Stretch="Fill"/>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                
+
+                <TextBlock Name="User_Name" HorizontalAlignment="Center" Foreground="White" Margin="10" TextWrapping="Wrap" Text="你好!小玩"  VerticalAlignment="Center" FontSize="22" />
+                <TextBlock Name="TimePass" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,50,0" TextWrapping="Wrap" Foreground="White" Text="60s后自动退出" VerticalAlignment="Center" FontSize="18"/>
+                <Button Content="退出" Click="Log_out" Foreground="Black" Grid.Column="2" Margin="20" />
+
             </Grid>
             <Grid Background="White" Margin="0" Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -155,9 +160,45 @@
                     <ColumnDefinition Width="2*"/>
                     
                 </Grid.ColumnDefinitions>
-
+                <Button Grid.Column="0"  Content="上一页" Tag="-1" Click="Change_Page" Margin="5" />
+                <Button Grid.Column="2"  Content="下一页" Tag ="1" Click="Change_Page" Margin="5" />
+                <TextBox Name="Second_Title" Grid.Column="1" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Margin="0" TextWrapping="Wrap" Text="共12个班级预约 当前第 1 页 共 2 页 " />
             </Grid>
-            <DataGrid Margin="0" Grid.Row="2" />
+            <DataGrid x:Name="DataGridView" SelectionMode="Single" AllowDrop="False"
+             Margin="0"  Grid.Row="2" IsReadOnly="True" VerticalContentAlignment="Center"
+            RowHeight="40" AutoGenerateColumns="False" ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Header="预约号" 
+                    Width="2*"
+                    
+                    Binding="{Binding Recode_id}" 
+                    FontSize="20"
+                    />
+                    <DataGridTextColumn 
+                    Header="日期" 
+                    Width="2*"
+                    Binding="{Binding Date}" 
+                    FontSize="20" />
+                    <DataGridTextColumn 
+                    Header="时间段"
+                    Width="2*"
+                    Binding="{Binding Time}"/>
+                    <DataGridTextColumn 
+                    Header="实验室"
+                    Width="2*"
+                    Binding="{Binding Lab}"/>
+                    <DataGridTextColumn 
+                    Header="实验任务"
+                    Width="2*"
+                    Binding="{Binding Content}"/>
+                    <DataGridTextColumn 
+                    Header="状态"
+                    Width="2*"
+                    Binding="{Binding Pass_statu}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
         </Grid>
 
 

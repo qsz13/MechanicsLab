@@ -8,7 +8,7 @@ namespace QuerySystem.Model
 {
     class ReservationList
     {
-        public List<Reservation> data{set; get;};
+        public List<Reservation> data{set; get;}
         
         public int numPerPage {get; set;}
 
