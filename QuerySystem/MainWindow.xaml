@@ -77,17 +77,83 @@
 
                         <Grid Grid.Column="0" Margin="1">
                             <Border CornerRadius="10" Background="White"  BorderBrush="#FF737070" BorderThickness="1" Margin="2" >
-                                    <TextBox   x:Name="input"  Background="{x:Null}" GotFocus="TextBox_GotFocus_1"  VerticalAlignment="Center" FontSize="30" ToolTip="输入工号／学号进行查询" Margin="-1,1,-50,1" BorderThickness="0"/>
+                                <TextBox   x:Name="input"  Background="{x:Null}"  BorderThickness="0" GotFocus="TextBox_GotFocus_1"  VerticalAlignment="Center" FontSize="30" ToolTip="输入工号／学号进行查询" Margin="-1,1,-50,1"/>
                             </Border>
                         </Grid>
 
                     </Grid>
-                    <Image HorizontalAlignment="Left" Margin="1" Grid.Row="1" VerticalAlignment="Top" Source="keyboard.png"/>
+                    <Grid Name="keyboard"  HorizontalAlignment="Center" Margin="5" Grid.Row="1" VerticalAlignment="Center" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100*" />
+                        </Grid.RowDefinitions>
+                        <Image  Grid.Row="0" x:Name="keyboardpng" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Source="keyboard.png"/>
+
+                        <Grid Grid.Row="0" Margin="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.3*" />
+                                <RowDefinition Height="2.3*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="2.3*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="0.8*" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="1" Margin="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Tag="1" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0" />
+                                <Button Grid.Column="1" Tag="2" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0"/>
+                                <Button Grid.Column="2" Tag="3" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0"/>
+                                <Button Grid.Column="3" Tag="4" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0"/>
+                                <Button Grid.Column="4" Tag="5" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0"/>
+                            </Grid>
+                            <Grid Margin="2" Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Tag="6" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0" />
+                                <Button Grid.Column="1" Tag="7" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0"/>
+                                <Button Grid.Column="2" Tag="8" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0"/>
+                                <Button Grid.Column="3" Tag="9" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0"/>
+                                <Button Grid.Column="4" Tag="0" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0"/>
+                            </Grid>
+                            <Grid Grid.Row="5" Margin="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="3*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Tag="delete" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0" />
+                                <Button Grid.Column="1" Tag="enter" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0"/>
+                                
+                            </Grid>
+                        </Grid>
+                    </Grid>
 
 
                 </Grid>
-                   
-                
+                <Grid Grid.Column="2" HorizontalAlignment="Left"  Margin="0" VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="10*" />
+                    </Grid.RowDefinitions>
+                    <Button Click="search_click" BorderThickness="0" Content="" HorizontalAlignment="Left" Margin="5" Grid.Row="0" VerticalAlignment="Top" Width="100" Height="45" FontSize="20" FontFamily="Adobe Fan Heiti Std B">
+                        <Button.Background>
+                            <ImageBrush ImageSource="search.png"/>
+                        </Button.Background>
+                        
+                    </Button>
+                    <TextBlock Text="查询" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" FontSize="20" />
+                </Grid>
+
             </Grid>
         </Grid>
 

@@ -13,10 +13,11 @@ namespace DisplayBoard
         public static int tomorrowExpSum = 0;//Tomorrow Experiment Number
         public static List<Reservation> resvtTodayListCopy = null;
         public static List<Reservation> resvtTomorrowListCopy = null;
+        public static List<MyMessage> waitongoingExpMsg = new List<MyMessage>();//waitOngoing Experiment Messages
         public static List<MyMessage> ongoingExpMsg = new List<MyMessage>();//Ongoing Experiment Messages
         public static List<MyMessage> upcomingExpMsg = new List<MyMessage>();//Upcoming Experiment Messages
         public static List<MyMessage> tomorrowExpMsg = new List<MyMessage>();//Tomorrow Experiment Messages
-        private static int iOngoing=0, iUpcoming=0, iTomorrow=0;
+        private static int iOngoing=0, iUpcoming=0, iTomorrow=0,iwaitOngoint=0;
         private static int currSlotNo=0;
 
         public static void getOngingExpMsg(List<Reservation> todayList)
@@ -38,7 +39,10 @@ namespace DisplayBoard
             if (todayList == null) return;
             
             //refresh all data, clear it!
-            if(flag == 0) ongoingExpMsg.Clear();
+            if (flag == 0) { 
+                ongoingExpMsg.Clear();
+                waitongoingExpMsg.Clear();
+            }
             if(flag == 1) upcomingExpMsg.Clear();
 
             foreach (var item in todayList)
@@ -57,6 +61,8 @@ namespace DisplayBoard
                     int orderSlotNo = 1;
                     if(currSlotNo != 0) orderSlotNo = item.slot.slotNo - currSlotNo;
                     mmTemp.m_statu = "下" + orderSlotNo + "个 - " + mmTemp.m_statu;
+                    if (orderSlotNo == 1)
+                        waitongoingExpMsg.Add(mmTemp);
                     upcomingExpMsg.Add(mmTemp);
                 }
 
@@ -95,9 +101,24 @@ namespace DisplayBoard
             myMsg.m_content = resvt.experiment.name;
             myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " " + resvt.clazz.teacher.name;
             myMsg.m_people = "";
-            foreach (var teacher in resvt.labTeacherList)
+
+            for (int i = 0; i < resvt.labTeacherList.Count;i++ )
             {
-                myMsg.m_people += teacher.name;
+                if (i == resvt.labTeacherList.Count - 1)
+                {
+                    myMsg.m_people = myMsg.m_people + resvt.labTeacherList[i].name;
+                    break;
+                }
+                if (resvt.labTeacherList.Count <= 4)
+                    myMsg.m_people = myMsg.m_people + resvt.labTeacherList[i].name + '/';
+                if (resvt.labTeacherList.Count > 4)
+                    if (i == resvt.labTeacherList.Count / 2 - 1)
+                        myMsg.m_people = myMsg.m_people + resvt.labTeacherList[i].name;
+                    else
+                        if (i == resvt.labTeacherList.Count / 2)
+                            myMsg.m_people = myMsg.m_people + '\n' + resvt.labTeacherList[i].name + '/';
+                        else
+                            myMsg.m_people = myMsg.m_people + resvt.labTeacherList[i].name + '/';
             }
             return myMsg;
         }
@@ -143,11 +164,35 @@ namespace DisplayBoard
                 else log("Refresh at:" + DateTime.Now + " reservationTodayList is null");
                 //Refresh complete May be need lock
                 getTodayExpMsg(resvtTodayListCopy,0);
-                if (ongoingExpMsg.Count == 0) return getDefaultMyMsg();
+                if (ongoingExpMsg.Count == 0) return getNextwaitOngoingMyMsg();
+                else iwaitOngoint = 0;
+
             }
             MyMessage result = ongoingExpMsg.ElementAt(iOngoing);
             iOngoing++;
             return result;
+        }
+
+        private static MyMessage getNextwaitOngoingMyMsg()
+        {
+            log("getnextwait");
+            if (upcomingExpMsg.Count == 0 || waitongoingExpMsg.Count == 0)
+            {
+                log("getnextwait=zero");
+                return getDefaultMyMsg();
+            }
+            else
+            {
+                log("getnextwait!=zero");
+                if (iwaitOngoint >= waitongoingExpMsg.Count)
+                {
+                    iwaitOngoint = 0;
+                }
+                iwaitOngoint++;
+                return waitongoingExpMsg[iwaitOngoint];
+
+            }
+
         }
         public static MyMessage getNextUpcomingMyMsg()
         {

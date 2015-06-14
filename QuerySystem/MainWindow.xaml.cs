@@ -23,11 +23,42 @@ namespace QuerySystem
         public MainWindow()
         {
             InitializeComponent();
+            this.keyboard.Visibility = Visibility.Hidden;
         }
 
         private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
         {
             this.input.Text = "12345";
+            this.keyboard.Visibility = Visibility.Visible;
+        }
+
+        private void search_click(object sender, RoutedEventArgs e)
+        {
+            this.keyboard.Visibility = Visibility.Hidden;
+        }
+        //input keyboard listener
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Button temp = sender as Button ;
+            if (temp.Tag.Equals("delete"))
+            {
+                if(this.input.Text.Length>0)
+                    this.input.Text=this.input.Text.Remove(this.input.Text.Length - 1);
+                return;
+            }
+            if( temp.Tag.Equals("enter"))
+            {
+               
+                search_click(null,null);
+                return;
+            }
+            if(input.Text.Length<14)
+                this.input.Text = this.input.Text + temp.Tag;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }

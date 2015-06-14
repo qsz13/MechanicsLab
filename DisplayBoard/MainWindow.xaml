@@ -83,7 +83,7 @@
                             <RowDefinition Height="2*" />
                         </Grid.RowDefinitions>
                         <Viewbox  Grid.Row="0">
-                            <TextBlock Foreground="White" Text="扭转实验室" Margin="0,5,0,0"/>
+                            <TextBlock  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="扭转实验室" Margin="0,5,0,0"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="1">
                             <TextBlock Foreground="#FFFF6701" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="时段 2- 正在进行"/></TextBlock>
@@ -92,10 +92,10 @@
                             <TextBlock Foreground="#FFFF6701" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="实验内容"/></TextBlock>
                         </Viewbox>
                         <Viewbox  Grid.Row="3">
-                            <TextBlock Foreground="#FFFF6701"><Run Text="1100201 材料力学 姜建华"/></TextBlock>
+                            <TextBlock Foreground="#FFFF6701" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="1100201 材料力学 姜建华"/></TextBlock>
                         </Viewbox>
                         <Viewbox  Grid.Row="4">
-                            <TextBlock Foreground="#FFFFD189"><Run Text="赵红晓／俞永辉／聂国俊／刘五祥／朱金龙"/></TextBlock>
+                            <TextBlock Foreground="#FFFFD189" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="赵红晓／俞永辉／聂国俊／刘五祥／朱金龙"/></TextBlock>
                         </Viewbox>
 
                     </Grid>
@@ -111,7 +111,7 @@
                             <RowDefinition Height="2*" />
                         </Grid.RowDefinitions>
                         <Viewbox  Grid.Row="0">
-                            <TextBlock Foreground="White" Text="扭转实验室" Margin="0,5,0,0"/>
+                            <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="扭转实验室" Margin="0,5,0,0"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="1">
                             <TextBlock Foreground="#FFFF6701" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="时段 2- 正在进行"/></TextBlock>
@@ -120,10 +120,10 @@
                             <TextBlock Foreground="#FFFF6701" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="实验内容"/></TextBlock>
                         </Viewbox>
                         <Viewbox  Grid.Row="3">
-                            <TextBlock Foreground="#FFFF6701"><Run Text="1100201 材料力学 姜建华"/></TextBlock>
+                            <TextBlock Foreground="#FFFF6701" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="1100201 材料力学 姜建华"/></TextBlock>
                         </Viewbox>
                         <Viewbox  Grid.Row="4">
-                            <TextBlock Foreground="#FFFFD189"><Run Text="赵红晓／俞永辉／聂国俊／刘五祥／朱金龙"/></TextBlock>
+                            <TextBlock Foreground="#FFFFD189" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="赵红晓／俞永辉／聂国俊／刘五祥／朱金龙"/></TextBlock>
                         </Viewbox>
 
                     </Grid>
@@ -137,7 +137,7 @@
                             <RowDefinition Height="2*" />
                         </Grid.RowDefinitions>
                         <Viewbox  Grid.Row="0">
-                            <TextBlock Foreground="White" Text="扭转实验室" Margin="0,5,0,0"/>
+                            <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="扭转实验室" Margin="0,5,0,0"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="1">
                             <TextBlock Foreground="#FFC8E89A" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="时段 2- 正在进行"/></TextBlock>
@@ -146,10 +146,10 @@
                             <TextBlock Foreground="#FFC8E89A" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="实验内容"/></TextBlock>
                         </Viewbox>
                         <Viewbox  Grid.Row="3">
-                            <TextBlock Foreground="#FFC8E89A"><Run Text="1100201 材料力学 姜建华"/></TextBlock>
+                            <TextBlock Foreground="#FFC8E89A" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="1100201 材料力学 姜建华"/></TextBlock>
                         </Viewbox>
                         <Viewbox  Grid.Row="4">
-                            <TextBlock Foreground="#FFFFD189"><Run Text="赵红晓／俞永辉／聂国俊／刘五祥／朱金龙"/></TextBlock>
+                            <TextBlock Foreground="#FFFFD189" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="赵红晓／俞永辉／聂国俊／刘五祥／朱金龙"/></TextBlock>
                         </Viewbox>
 
                     </Grid>
@@ -165,7 +165,7 @@
                             <RowDefinition Height="2*" />
                         </Grid.RowDefinitions>
                         <Viewbox  Grid.Row="0">
-                            <TextBlock Foreground="White" Text="扭转实验室" Margin="0,5,0,0"/>
+                            <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="扭转实验室" Margin="0,5,0,0"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="1">
                             <TextBlock Foreground="#FFC8E89A" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="时段 2- 正在进行"/></TextBlock>
