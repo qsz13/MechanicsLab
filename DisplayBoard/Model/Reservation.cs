@@ -27,6 +27,7 @@ namespace DisplayBoard
 
         public int count { get; set; }
 
+        public List<LabTeacher> labTeacherList{get;set;}
 
     }
 }
