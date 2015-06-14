@@ -89,7 +89,7 @@ namespace DisplayBoard
         public static void getTomorrowExpMsg(List<Reservation> tomorrowList)
         {
             if (tomorrowList == null) return;
-
+            tomorrowExpMsg.Clear();
             int i = 1;
             foreach (var item in tomorrowList)
             {
