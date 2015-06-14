@@ -51,8 +51,7 @@
                 </Grid>
                
                 	
-                
-                
+            
             </Grid>
         </Grid>
 
@@ -75,18 +74,18 @@
                         <RowDefinition Height="10*" />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="8*" />
-                            <ColumnDefinition Width="2*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <TextBox VerticalAlignment="Center" FontSize="30" ToolTip="输入工号／学号进行查询"/>
+
+                        <Grid Grid.Column="0" Margin="1">
+                            <Border CornerRadius="10" Background="White"  BorderBrush="#FF737070" BorderThickness="1" Margin="2" >
+                                    <TextBox   x:Name="input"  Background="{x:Null}" GotFocus="TextBox_GotFocus_1"  VerticalAlignment="Center" FontSize="30" ToolTip="输入工号／学号进行查询" Margin="-1,1,-50,1" BorderThickness="0"/>
+                            </Border>
                         </Grid>
 
                     </Grid>
-                    
+                    <Image HorizontalAlignment="Left" Margin="1" Grid.Row="1" VerticalAlignment="Top" Source="keyboard.png"/>
 
-                 </Grid>
+
+                </Grid>
                    
                 
             </Grid>

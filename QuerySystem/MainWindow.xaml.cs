@@ -24,5 +24,11 @@ namespace QuerySystem
         {
             InitializeComponent();
         }
+
+        private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
+        {
+            this.input.Text = "12345";
+        }
+
     }
 }

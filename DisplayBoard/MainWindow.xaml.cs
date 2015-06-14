@@ -197,7 +197,7 @@ namespace DisplayBoard
             }
             temp = DataUtil.getNextUpcomingMyMsg();
            
-            if (!temp.Equals(tomorrow))
+            if (!temp.Equals(upcoming))
             {
                 change_content(this.upcomingAnimaView, temp);
                 this.tt3_copy.BeginAnimation(TranslateTransform.XProperty, dax);
@@ -206,7 +206,7 @@ namespace DisplayBoard
                 upcoming = temp;
             }
             temp = DataUtil.getNextTomorrowMyMsg();
-            if (!temp.Equals(upcoming))
+            if (!temp.Equals(tomorrow))
             {
                 change_content(this.tomorrowAnimaView, temp);
                 this.tt4_copy.BeginAnimation(TranslateTransform.XProperty, dax);

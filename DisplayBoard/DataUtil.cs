@@ -17,6 +17,7 @@ namespace DisplayBoard
         public static List<MyMessage> upcomingExpMsg = new List<MyMessage>();//Upcoming Experiment Messages
         public static List<MyMessage> tomorrowExpMsg = new List<MyMessage>();//Tomorrow Experiment Messages
         private static int iOngoing=0, iUpcoming=0, iTomorrow=0;
+        private static int currSlotNo=0;
 
         public static void getOngingExpMsg(List<Reservation> todayList)
         {
@@ -44,14 +45,18 @@ namespace DisplayBoard
             {
                 int resu = compaireTime(item.slot.startTime, item.slot.endTime);
                 if (resu == -1) continue;
-                MyMessage mmTemp = convertResvtToMyMsg(item);
+                MyMessage mmTemp = convertResvtToMyMsg(item, flag);
 
                 if (resu == 0&&flag==0)
                 {
-                    ongoingExpMsg.Add(mmTemp);                    
+                    currSlotNo = item.slot.slotNo;//record slot no.
+                    ongoingExpMsg.Add(mmTemp);
                 }
                 else if (resu == 1&&flag==1)
                 {
+                    int orderSlotNo = 1;
+                    if(currSlotNo != 0) orderSlotNo = item.slot.slotNo - currSlotNo;
+                    mmTemp.m_statu = "下" + orderSlotNo + "个 - " + mmTemp.m_statu;
                     upcomingExpMsg.Add(mmTemp);
                 }
 
@@ -64,10 +69,13 @@ namespace DisplayBoard
         {
             if (tomorrowList == null) return;
 
+            int i = 1;
             foreach (var item in tomorrowList)
             {
-                MyMessage mmTemp = convertResvtToMyMsg(item);
+                MyMessage mmTemp = convertResvtToMyMsg(item, 2);
+                mmTemp.m_statu = "第"+i+"个 - "+mmTemp.m_statu;
                 tomorrowExpMsg.Add(mmTemp);
+                i++;
             }
             tomorrowExpSum = tomorrowExpMsg.Count;
         }
@@ -75,11 +83,15 @@ namespace DisplayBoard
         /**
          * bind data
          **/
-        private static MyMessage convertResvtToMyMsg(Reservation resvt)
+        private static MyMessage convertResvtToMyMsg(Reservation resvt, int flag)
         {
             MyMessage myMsg = new MyMessage();
             myMsg.m_lab = resvt.lab.name;
-            myMsg.m_statu = "时段"+resvt.slot.slotNo+"- "+"<正在进行?>";
+            myMsg.m_statu = "时段" + resvt.slot.slotNo;
+            if (flag != 2)
+            {
+                myMsg.m_statu += " - " + ((flag == 0) ? "正在进行" : "即将进行");
+            }
             myMsg.m_content = resvt.experiment.name;
             myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " " + resvt.clazz.teacher.name;
             myMsg.m_people = "";
@@ -95,13 +107,13 @@ namespace DisplayBoard
             //Console.WriteLine(dtEnd);
             if (DateTime.Compare(dtNow, dtStart) < 0)
             {
-                //No use date, Overdue: dtNow<dtStart
-                return -1;
+                //dtNow<dtStart
+                return 1;
             }
             else if (DateTime.Compare(dtEnd, dtNow) <= 0)
             {
-                //:dtEnd <= dtNow
-                return 1;
+                //No use date, Overdue:dtEnd <= dtNow
+                return -1;
             }
             else
             {
@@ -181,7 +193,11 @@ namespace DisplayBoard
         private static MyMessage getDefaultMyMsg()
         {
             MyMessage mm = new MyMessage();
-            mm.m_lab = "NO_REMAIN_MSG";
+            mm.m_lab = "没有下一个";
+            mm.m_statu = "";
+            mm.m_content = "";
+            mm.m_class = "";
+            mm.m_people = "";
             return mm;
         }
 
