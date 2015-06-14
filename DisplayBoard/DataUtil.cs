@@ -95,6 +95,10 @@ namespace DisplayBoard
             myMsg.m_content = resvt.experiment.name;
             myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " " + resvt.clazz.teacher.name;
             myMsg.m_people = "";
+            foreach (var teacher in resvt.labTeacherList)
+            {
+                myMsg.m_people += teacher.name;
+            }
             return myMsg;
         }
 

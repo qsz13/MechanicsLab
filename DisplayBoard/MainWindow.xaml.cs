@@ -187,7 +187,7 @@ namespace DisplayBoard
             //input your message
             MyMessage temp;
             temp = DataUtil.getNextOngoingMyMsg();
-            if (!temp.Equals(ongoing))
+            if (!temp.Equals(ongoing) || true)
             {
                 change_content(this.ongoingAnimaView, temp);
                 this.tt1_copy.BeginAnimation(TranslateTransform.XProperty, dax);
