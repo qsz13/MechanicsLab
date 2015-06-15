@@ -15,7 +15,7 @@ namespace DisplayBoard
 
         private static String token = null;
         private static int semester;
-        private static String API_URL = "http://labcom.tongji.edu.cn";
+        private static String API_URL = "http://202.120.188.5";
         
         public static bool Login(String username, String password)
         {

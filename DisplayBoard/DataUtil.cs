@@ -99,7 +99,16 @@ namespace DisplayBoard
                 myMsg.m_statu += " - " + ((flag == 0) ? "正在进行" : "即将进行");
             }
             myMsg.m_content = resvt.experiment.name;
-            myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " " + resvt.clazz.teacher.name;
+            if (resvt.clazz.teacher==null)
+            {
+                myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " ";
+
+            }
+            else
+            {
+                myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " " + resvt.clazz.teacher.name;
+
+            }
             myMsg.m_people = "";
 
             for (int i = 0; i < resvt.labTeacherList.Count;i++ )
