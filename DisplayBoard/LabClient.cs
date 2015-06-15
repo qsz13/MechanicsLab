@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DisplayBoard
 {
@@ -25,8 +26,16 @@ namespace DisplayBoard
             request.AddHeader("X-Password", password);
             client.ExecuteAsync(request, response =>
             {
-                token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
-                getSemester();
+                Console.WriteLine(response);
+                if(response.StatusCode.ToString()=="OK")
+                {
+                    token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
+                    getSemester();
+                }
+                else
+                {
+                    MessageBox.Show("failed");
+                }
             });
 
             return true;
