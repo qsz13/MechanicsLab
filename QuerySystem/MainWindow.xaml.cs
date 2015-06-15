@@ -29,6 +29,8 @@ namespace QuerySystem
         public MainWindow()
         {
             InitializeComponent();
+            LabClient.Login("a091116", "222222");
+
             initTimer();
             this.keyboard.Visibility = Visibility.Hidden;
             this.SearchResultView.Visibility = Visibility.Hidden;
@@ -67,7 +69,7 @@ namespace QuerySystem
                 return;
             this.keyboard.Visibility = Visibility.Hidden;
             //input user id exist?
-            LabClient.Login("a091116", "222222");
+            //LabClient.Login("a091116", "222222");
             String a = this.input.Text;
             DataUtil.accountId=Int32.Parse(a);
             bool UserExist=true;

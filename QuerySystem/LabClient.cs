@@ -50,25 +50,34 @@ namespace QuerySystem
             return true;
         }
 
-        public static ReservationList getReservation(int accountID, int pageSize, int pageNumber)
+        public static ReservationList getReservation(int accountNumber, int pageSize, int pageNumber)
         {
-            Account account = getAccount(accountID);
-            if (account.role.Equals("NOR_TEACHER"))
+            Account account = getAccount(accountNumber);
+            int accountID = account.id;
+            if (account!=null)
             {
-                return getTeacherReservationList(accountID, pageSize, pageNumber);
-            }
-            else if (account.role.Equals("ALL_TEACHER"))
-            {
-                return getLabTeacherReservationList(accountID, pageSize, pageNumber);
-            }
-            else if (account.role.Equals("STUDENT"))
-            {
-                return getClazzReservationList(accountID, pageSize, pageNumber);
+                if (account.role.Equals("NOR_TEACHER"))
+                {
+                    return getTeacherReservationList(accountID, account.name, pageSize, pageNumber);
+                }
+                else if (account.role.Equals("ALL_TEACHER"))
+                {
+                    return getLabTeacherReservationList(accountID,account.name, pageSize, pageNumber);
+                }
+                else if (account.role.Equals("STUDENT"))
+                {
+                    return getClazzReservationList(accountID, account.name, pageSize, pageNumber);
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
                 return null;
             }
+           
 
         }
 
@@ -85,7 +94,7 @@ namespace QuerySystem
             {
                 JObject accountJObject = JObject.Parse(content);
 
-                JArray accountData = (JArray)accountJObject["data"];
+                JObject accountData = (JObject)accountJObject["data"];
 
                 account = JsonConvert.DeserializeObject<Account>(accountData.ToString(),
                 new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
@@ -95,7 +104,7 @@ namespace QuerySystem
             return account;
         }
 
-        private static ReservationList getStudentReservationList(int accountID, int pageSize, int pageNumber)
+        private static ReservationList getStudentReservationList(int accountID, String name, int pageSize, int pageNumber)
         {
             var client = new RestClient(API_URL);
             String request_url = String.Format("/api/reservation/student/{0}/page/{1}/{2}?semester={3}&type=student", accountID, pageSize, pageNumber, semester);
@@ -108,13 +117,14 @@ namespace QuerySystem
             {
                 ReservationList reservationList = JsonConvert.DeserializeObject<ReservationList>(content.ToString(),
                     new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
+                reservationList.accountName = name;
                 return reservationList;
             }
             
             return null;
         }
 
-        private static ReservationList getClazzReservationList(int accountID, int pageSize, int pageNumber)
+        private static ReservationList getClazzReservationList(int accountID,String name, int pageSize, int pageNumber)
         {
             var client = new RestClient(API_URL);
             String request_url = String.Format("/api/reservation/student/{0}/page/{1}/{2}?semester={3}&type=clazz", accountID, pageSize, pageNumber, semester);
@@ -127,6 +137,7 @@ namespace QuerySystem
             {
                 ReservationList reservationList = JsonConvert.DeserializeObject<ReservationList>(content.ToString(),
                     new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
+                reservationList.accountName = name;
                 return reservationList;
             }
 
@@ -134,7 +145,7 @@ namespace QuerySystem
             return null; ;
         }
 
-        private static ReservationList getTeacherReservationList(int accountID, int pageSize, int pageNumber)
+        private static ReservationList getTeacherReservationList(int accountID,String name, int pageSize, int pageNumber)
         {
             var client = new RestClient(API_URL);
             String request_url = String.Format("/api/reservation/teacher/{0}/page/{1}/{2}?semester={3}&status=APPROVED", accountID, pageSize, pageNumber, semester);
@@ -147,6 +158,7 @@ namespace QuerySystem
             {
                 ReservationList reservationList = JsonConvert.DeserializeObject<ReservationList>(content.ToString(),
                     new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
+                reservationList.accountName = name;
                 return reservationList;
             }
 
@@ -154,7 +166,7 @@ namespace QuerySystem
             return null;
         }
 
-        private static ReservationList getLabTeacherReservationList(int accountID, int pageSize, int pageNumber)
+        private static ReservationList getLabTeacherReservationList(int accountID,String name, int pageSize, int pageNumber)
         {
             var client = new RestClient(API_URL);
             String request_url = String.Format("/api/reservation/labteacher/{0}/page/{1}/{2}?semester={3}&status=APPROVED", accountID, pageSize, pageNumber, semester);
@@ -167,6 +179,7 @@ namespace QuerySystem
             {
                 ReservationList reservationList = JsonConvert.DeserializeObject<ReservationList>(content.ToString(),
                     new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
+                reservationList.accountName = name;
                 return reservationList;
             }
 
