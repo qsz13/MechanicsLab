@@ -38,7 +38,7 @@
             
 
 
-        <MediaElement Name="media" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Source="media.mp4" UnloadedBehavior="Manual" LoadedBehavior="Manual" ></MediaElement>
+        <MediaElement Name="media" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" UnloadedBehavior="Manual" LoadedBehavior="Manual" ></MediaElement>
     </Grid>
 
         <Grid  Grid.Column="1">

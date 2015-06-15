@@ -30,6 +30,10 @@ namespace DisplayBoard
         int elpase = 3;
         int Logintime = 0;
         string temp = "";
+        String[] media_name = { "media1.mp4", "media2.mp4"};
+        private int total_media = 2;
+        private int current_media = 2;
+
         DoubleAnimation dax = new DoubleAnimation();
         DoubleAnimation day = new DoubleAnimation();
         MyMessage ongoing = new MyMessage();
@@ -42,6 +46,7 @@ namespace DisplayBoard
             initClock();
             initDate();
             initMedia();
+            loadMedia();
             try
             {
                 LabClient.Login("a091116", "222222");
@@ -59,6 +64,29 @@ namespace DisplayBoard
             media.Unloaded += new RoutedEventHandler(media_Unloaded);  
         }
 
+        private void loadMedia()
+        {
+            if(current_media<total_media-1)
+            {
+                current_media++;
+            }
+            else
+            {
+                current_media = 0;
+            }
+            try
+            {
+                media.Source = new Uri(media_name[this.current_media], UriKind.RelativeOrAbsolute);
+
+            }
+            catch
+            {
+                Console.Write("can't load media");
+            }
+
+
+        }
+
         private void media_Unloaded(object sender, RoutedEventArgs e)
         {
             (sender as MediaElement).Stop();  
@@ -72,6 +100,7 @@ namespace DisplayBoard
         private void media_MediaEnded(object sender, RoutedEventArgs e)
         {
             (sender as MediaElement).Stop();
+            loadMedia();
             (sender as MediaElement).Play();  
         }
         private void initAnimation()
