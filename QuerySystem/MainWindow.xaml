@@ -19,39 +19,15 @@
 
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="8*" />
-                        <RowDefinition Height="2*" />
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="1" Source="logo.png" Margin="30,20,-30,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-
-                </Grid>
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="4*" />
-                        <RowDefinition Height="2*" />
-                    </Grid.RowDefinitions>
-                    <Viewbox Grid.Row="1" Grid.Column="1">
-                        <TextBlock Foreground="White"><Run Text="国家重点实验室 同济大学力学实验中心"/></TextBlock>
-                    </Viewbox>
-                    <Viewbox Grid.Row="2" Grid.Column="1">
-                        <TextBlock Foreground="#FFFFD9A7"><Run Text="LabCom 实验预约自助查询"/></TextBlock>
-                    </Viewbox>
-                    <Viewbox Grid.Row="3" Grid.Column="1">
-                        <TextBlock Foreground="White"><Run Text="Mechanics Lab Center of Tongji University"/></TextBlock>
-                    </Viewbox>
-                </Grid>
-
-
+                <Grid.RowDefinitions>                
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Viewbox  Grid.Row="0"/>
+                <Image Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Center"  Source="title.png"/>
+                <Viewbox  Grid.Row="2"/>
+                
 
             </Grid>
         </Grid>
