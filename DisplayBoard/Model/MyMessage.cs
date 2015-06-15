@@ -32,7 +32,7 @@ namespace DisplayBoard.Model
             this.getmm();
             for (int i = 0; i < 5; i++)
             {
-                if (!mm[0].Equals(a.mm[0]))
+                if (!mm[i].Equals(a.mm[i]))
                     return false;
             }
             return true;
