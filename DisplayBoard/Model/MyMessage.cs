@@ -24,7 +24,7 @@ namespace DisplayBoard.Model
             mm[3] = m_class;
             mm[4] = m_people;
         }
-        public override bool Equals(object obj)
+        public bool isEqual(object obj)
         {
 
             MyMessage a = obj as MyMessage;

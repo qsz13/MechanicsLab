@@ -35,8 +35,7 @@ namespace DisplayBoard
                 });
             }
             catch
-            {
-                
+            {         
             }
 
             return true;
