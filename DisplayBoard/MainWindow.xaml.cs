@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using DisplayBoard.Model;
+using System.Configuration;
+using MediaApplication;
 
 
 namespace DisplayBoard
@@ -30,6 +32,7 @@ namespace DisplayBoard
         int elpase = 3;
         int Logintime = 0;
         string temp = "";
+
         DoubleAnimation dax = new DoubleAnimation();
         DoubleAnimation day = new DoubleAnimation();
         MyMessage ongoing = new MyMessage();
@@ -42,6 +45,7 @@ namespace DisplayBoard
             initClock();
             initDate();
             initMedia();
+            
             try
             {
                 LabClient.Login("a091116", "222222");
