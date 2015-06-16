@@ -35,8 +35,7 @@ namespace DisplayBoard
                 });
             }
             catch
-            {
-                Console.WriteLine("no connection");
+            {         
             }
 
             return true;

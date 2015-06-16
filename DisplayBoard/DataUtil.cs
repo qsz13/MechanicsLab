@@ -48,6 +48,15 @@ namespace DisplayBoard
                 upcomingExpMsg.Clear();
                 waitongoingExpMsg.Clear();
             }
+            int close_slot=80;
+            foreach (var item in todayList)
+            {
+                int resu = compaireTime(item.slot.startTime, item.slot.endTime);
+                if (resu == -1) continue;
+                else
+                    close_slot = close_slot < item.slot.slotNo ? close_slot : item.slot.slotNo;
+
+            }
             foreach (var item in todayList)
             {
                 int resu = compaireTime(item.slot.startTime, item.slot.endTime);
@@ -62,11 +71,14 @@ namespace DisplayBoard
                 else if (resu == 1&&flag==1)
                 {
                     int orderSlotNo = 1;
-                    if(currSlotNo != 0) orderSlotNo = item.slot.slotNo - currSlotNo;
-                    mmTemp.m_statu = "下" + orderSlotNo + "个 - " + mmTemp.m_statu;
-                    if (orderSlotNo == 1)
-                        waitongoingExpMsg.Add(mmTemp);
-                    upcomingExpMsg.Add(mmTemp);
+                    orderSlotNo = item.slot.slotNo - close_slot+1;
+                    if (orderSlotNo > 0)
+                    {
+                        mmTemp.m_statu = "下" + orderSlotNo + "个 - " + mmTemp.m_statu;
+                        if (orderSlotNo == 1)
+                            waitongoingExpMsg.Add(mmTemp);
+                        upcomingExpMsg.Add(mmTemp);
+                    }
                 }
 
             }

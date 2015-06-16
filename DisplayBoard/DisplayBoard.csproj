@@ -63,6 +63,7 @@
     </ApplicationDefinition>
     <Compile Include="DataUtil.cs" />
     <Compile Include="LabUtil.cs" />
+    <Compile Include="MediaManager.cs" />
     <Compile Include="Model\Clazz.cs" />
     <Compile Include="Model\Course.cs" />
     <Compile Include="Model\Experiment.cs" />
@@ -118,6 +119,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+
     <Resource Include="title.png" />
   </ItemGroup>
   <ItemGroup>

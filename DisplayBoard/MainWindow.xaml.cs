@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using DisplayBoard.Model;
+using System.Configuration;
+using MediaApplication;
 
 
 namespace DisplayBoard
@@ -30,6 +32,7 @@ namespace DisplayBoard
         int elpase = 3;
         int Logintime = 0;
         string temp = "";
+
         String[] media_name = { "media1.mp4", "media2.mp4"};
         private int total_media = 2;
         private int current_media = 2;
@@ -46,6 +49,7 @@ namespace DisplayBoard
             initClock();
             initDate();
             initMedia();
+
             loadMedia();
             try
             {
