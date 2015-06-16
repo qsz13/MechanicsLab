@@ -12,11 +12,11 @@ namespace QuerySystem
 {
     class LabClient
     {
-        private String token = null;
-        private int semester;
-        private String API_URL = "http://202.120.188.5";
+        private static String token = null;
+        private static int semester;
+        private static String API_URL = "http://202.120.188.5";
 
-        public bool Login(String username, String password)
+        public static bool Login(String username, String password)
         {
             var client = new RestClient(API_URL);
             var request = new RestRequest("api/token", Method.POST);
@@ -32,7 +32,7 @@ namespace QuerySystem
 
         }
 
-        public bool getSemester()
+        public static bool getSemester()
         {
             var client = new RestClient(API_URL);
             var request = new RestRequest("/api/semester/current", Method.GET);
@@ -53,10 +53,10 @@ namespace QuerySystem
             return true;
         }
 
-        public ReservationList getStudentReservationList(int accountID, int pageSize, int pageNumber)
+        public static ReservationList getStudentReservationList(int accountID, int pageSize, int pageNumber)
         {
             var client = new RestClient(API_URL);
-            String request_url = String.Format("/api/reservation/student/{0}/page/{1}/{2}?semester={3}&type=student", accountID, pageSize, pageNumber, this.semester);
+            String request_url = String.Format("/api/reservation/student/{0}/page/{1}/{2}?semester={3}&type=student", accountID, pageSize, pageNumber, semester);
             var request = new RestRequest(request_url, Method.GET);
             request.AddHeader("X-Auth-Token", token);
             IRestResponse response = client.Execute(request);
@@ -72,10 +72,10 @@ namespace QuerySystem
             return null;
         }
 
-        public ReservationList getClazzReservationList(int accountID, int pageSize, int pageNumber)
+        public static ReservationList getClazzReservationList(int accountID, int pageSize, int pageNumber)
         {
             var client = new RestClient(API_URL);
-            String request_url = String.Format("/api/reservation/student/{0}/page/{1}/{2}?semester={3}&type=clazz", accountID, pageSize, pageNumber, this.semester);
+            String request_url = String.Format("/api/reservation/student/{0}/page/{1}/{2}?semester={3}&type=clazz", accountID, pageSize, pageNumber, semester);
             var request = new RestRequest(request_url, Method.GET);
             request.AddHeader("X-Auth-Token", token);
             IRestResponse response = client.Execute(request);
@@ -92,10 +92,10 @@ namespace QuerySystem
             return null; ;
         }
 
-        public ReservationList getTeacherReservationList(int accountID, int pageSize, int pageNumber)
+        public static ReservationList getTeacherReservationList(int accountID, int pageSize, int pageNumber)
         {
             var client = new RestClient(API_URL);
-            String request_url = String.Format("/api/reservation/teacher/{0}/page/{1}/{2}?semester={3}&status=APPROVED", accountID, pageSize, pageNumber,this.semester);
+            String request_url = String.Format("/api/reservation/teacher/{0}/page/{1}/{2}?semester={3}&status=APPROVED", accountID, pageSize, pageNumber, semester);
             var request = new RestRequest(request_url, Method.GET);
             request.AddHeader("X-Auth-Token", token);
             IRestResponse response = client.Execute(request);
