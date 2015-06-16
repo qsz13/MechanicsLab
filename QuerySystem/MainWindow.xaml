@@ -183,6 +183,7 @@
                     <DataGridTextColumn 
                     Header="时间段"
                     Width="2*"
+                    Foreground="Blue"
                     Binding="{Binding Time}"/>
                     <DataGridTextColumn 
                     Header="实验室"

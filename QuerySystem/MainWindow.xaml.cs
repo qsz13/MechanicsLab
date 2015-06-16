@@ -94,7 +94,7 @@ namespace QuerySystem
         {
             MessageList.Clear();
 
-            for (int i = 0; i < 20+pagenum; i++)
+            for (int i = 0; i < 2+pagenum; i++)
             {
                 MessageList.Add(new MyMessage());
             }
