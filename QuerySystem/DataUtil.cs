@@ -9,29 +9,91 @@ namespace QuerySystem
 {
     class DataUtil
     {
+        /**
+         * 维护accountId
+         * 全局变量 全局设定参数，每页的数量，点击按钮维护curPageNum
+         * */
+        public const int numPerPage = 8;
+        public static int curPageNum = 0;
+        public static int totalItemNum = 0;
+        public static int totalPageNum = 0;//Constraint: curPageNum < totalPageNum
+
+        public static int accountId =122344;
+
+        public static List<MyMessage> goNextPage()
+        {
+            if (curPageNum >= totalPageNum)
+            {
+                curPageNum = totalPageNum;
+                log("In the end of pages");
+            }else {
+                curPageNum++;
+            }
+            return getMyMsgList();
+        }
+
+        public static List<MyMessage> goPriviousPage()
+        {
+            if (curPageNum <= 1)
+            {
+                curPageNum = 1;
+                log("In the beginning of pages");
+            }
+            else
+            {
+                curPageNum--;
+            }
+            return getMyMsgList();
+        }
+
+
         private static List<MyMessage> getMyMsgList()
         {
             List<MyMessage> result = new List<MyMessage>();
             //<GET LISTS>
             ReservationList resvList = getDataFromServer(RequestType.Student);//For example ... need change....
 
-            //Bind Data....
+            if (resvList == null)
+            {
+                log("get reservation list is null");
+                return null;
+            }
 
+            //Bind Data....
+            foreach (var item in resvList.data)
+            {
+                MyMessage mmTemp = new MyMessage();
+                mmTemp.Recode_id = item.id.ToString();
+                mmTemp.Date = item.applyDate;//????
+                mmTemp.Time = item.slot.title;
+                mmTemp.Lab = item.lab.name;
+                mmTemp.Content = item.experiment.name;
+                mmTemp.Pass_statu = item.status;
+                result.Add(mmTemp);
+            }
+
+            //refresh data..
+            curPageNum = resvList.curPageNum;
+            totalItemNum = resvList.totalItemNum;
+            totalPageNum = resvList.totalPageNum;
 
             return result;
         }
 
         private static ReservationList getDataFromServer(RequestType requestType)
         {
+
             ReservationList result = null;
             switch (requestType)
             {
                 case RequestType.Student:
-                    
+                    result = LabClient.getStudentReservationList(accountId, numPerPage, curPageNum);
                     break;
                 case RequestType.Teacher:
+                    result = LabClient.getTeacherReservationList(accountId, numPerPage, curPageNum);
                     break;
                 case RequestType.Clazz:
+                    result = LabClient.getClazzReservationList(accountId, numPerPage, curPageNum);
                     break;
                 default:
                     log("Not Recognized Request Type");
@@ -41,7 +103,7 @@ namespace QuerySystem
             return result;
         }
 
-        public static enum RequestType {Student, Clazz, Teacher};
+        public enum RequestType {Student, Clazz, Teacher};
 
         private static void log(String str)
         {
