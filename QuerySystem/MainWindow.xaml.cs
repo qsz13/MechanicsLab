@@ -70,8 +70,7 @@ namespace QuerySystem
             this.keyboard.Visibility = Visibility.Hidden;
             //input user id exist?
             //LabClient.Login("a091116", "222222");
-            String a = this.input.Text;
-            DataUtil.accountId=Int32.Parse(a);
+            DataUtil.accountId = this.input.Text;
             bool UserExist=true;
             if (UserExist == true)
             {

@@ -7,6 +7,8 @@ using RestSharp;
 using Newtonsoft.Json.Linq;
 using QuerySystem.Model;
 using Newtonsoft.Json;
+using QuerySystem.Exceptions;
+using System.Windows;
 
 namespace QuerySystem
 {
@@ -22,18 +24,18 @@ namespace QuerySystem
             var request = new RestRequest("api/token", Method.POST);
             request.AddHeader("X-Username", username);
             request.AddHeader("X-Password", password);
-            client.ExecuteAsync(request, response =>
+            IRestResponse response = client.Execute(request);
+            try
             {
-                try
-                {
-                    token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
-                    getSemester();
-                }
-                catch
-                {
-                    Console.WriteLine("login failed");
-                }
-            });
+                token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
+                getSemester();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("登陆失败");
+            }
+                         
+           
 
             return true;
 
@@ -57,19 +59,23 @@ namespace QuerySystem
             return true;
         }
 
-        public static ReservationList getReservation(int accountNumber, int pageSize, int pageNumber)
+        public static ReservationList getReservation(String accountNumber, int pageSize, int pageNumber)
         {
             Account account = null;
             int accountID = 0;
             try
             {
                 account = getAccount(accountNumber);
+                
+                if(account==null)
+                {
+                    throw new AccountNotFoundException();
+                }
                 accountID = account.id;
             }
-            catch(Exception e)
+            catch(Exception ex)
             {
-                //throw new Exception("get account failed");
-                return null;
+                throw ex;
             }
            
             if (account!=null)
@@ -93,9 +99,9 @@ namespace QuerySystem
                         return null;
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
-                    throw new Exception("get ReservationList failed");
+                    throw ex;
                 }
                
 
@@ -108,27 +114,36 @@ namespace QuerySystem
 
         }
 
-        private static Account getAccount(int accountID)
+        private static Account getAccount(String accountID)
         {
             var client = new RestClient(API_URL);
             String request_url = String.Format("api/account?number={0}", accountID);
             var request = new RestRequest(request_url, Method.GET);
             request.AddHeader("X-Auth-Token", token);
-            IRestResponse response = client.Execute(request);
+            IRestResponse response = null;
+            response = client.Execute(request);
+
+            
             var content = response.Content; // raw content as string
             Account account = null;
             if (response.StatusCode.ToString() == "OK")
             {
                 JObject accountJObject = JObject.Parse(content);
-
-                JObject accountData = (JObject)accountJObject["data"];
+                
+                if(accountJObject["data"].HasValues==false)
+                {
+                    throw new AccountNotFoundException();
+                }
+                JObject accountData = (JObject)accountJObject["data"];                
 
                 account = JsonConvert.DeserializeObject<Account>(accountData.ToString(),
                 new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
                 return account;
             }
-
-            return account;
+            else
+            {
+                throw new ServerNotResponseException();
+            }
         }
 
         private static ReservationList getStudentReservationList(int accountID, String name, int pageSize, int pageNumber)
@@ -147,8 +162,10 @@ namespace QuerySystem
                 reservationList.accountName = name;
                 return reservationList;
             }
-            
-            return null;
+            else
+            {
+                throw new ServerNotResponseException();
+            }
         }
 
         private static ReservationList getClazzReservationList(int accountID,String name, int pageSize, int pageNumber)
@@ -167,9 +184,13 @@ namespace QuerySystem
                 reservationList.accountName = name;
                 return reservationList;
             }
+            else
+            {
+                throw new ServerNotResponseException();
+            }
 
 
-            return null; ;
+
         }
 
         private static ReservationList getTeacherReservationList(int accountID,String name, int pageSize, int pageNumber)
@@ -188,9 +209,11 @@ namespace QuerySystem
                 reservationList.accountName = name;
                 return reservationList;
             }
+            else
+            {
+                throw new ServerNotResponseException();
+            }
 
-
-            return null;
         }
 
         private static ReservationList getLabTeacherReservationList(int accountID,String name, int pageSize, int pageNumber)
@@ -209,9 +232,12 @@ namespace QuerySystem
                 reservationList.accountName = name;
                 return reservationList;
             }
+            else
+            {
+                throw new ServerNotResponseException();
+            }
 
 
-            return null;
         }
 
     }
