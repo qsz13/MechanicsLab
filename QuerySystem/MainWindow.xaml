@@ -33,7 +33,7 @@
         </Grid>
 
         <Image Grid.Row="1" Grid.Column="1" Source="pack://siteoforigin:,,,/labimage.png" VerticalAlignment="Center" Margin="0,-100"/>
-        <Grid Name="InputSearchIDView" Grid.Row="1" Grid.Column="1" d:IsHidden="True">
+        <Grid Name="InputSearchIDView" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="6*" />
@@ -89,8 +89,8 @@
                                     <ColumnDefinition Width="3.2*" />
                                     <ColumnDefinition Width="1.6*" />
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="1" Tag="1" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0.2" />
-                                <Button Grid.Column="3" Tag="2" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0.2"/>
+                                <Button Grid.Column="1" Tag="1" Click="Button_Click1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0.2" />
+                                <Button Grid.Column="3" Tag="2" Click="Button_Click2" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0.2"/>
                                 <Button Grid.Column="5" Tag="3" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0.2"/>
                                 <Button Grid.Column="7" Tag="4" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0.2"/>
                                 <Button Grid.Column="9" Tag="5" Click="Button_Click_1" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0.2"/>

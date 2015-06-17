@@ -122,21 +122,24 @@ namespace QuerySystem
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Button temp = sender as Button ;
-            if (temp.Tag.Equals("delete"))
-            {
-                if(this.input.Text.Length>0)
-                    this.input.Text=this.input.Text.Remove(this.input.Text.Length - 1);
-                return;
-            }
-            if( temp.Tag.Equals("enter"))
-            {
-                search_click(null,null);
-                return;
-            }
-            if(input.Text.Length<14)
-                this.input.Text = this.input.Text + temp.Tag;
+            Click(temp.Tag.ToString());
         }
-
+        private void Click(String input)
+        {
+            if (input.Equals("delete"))
+            {
+                if (this.input.Text.Length > 0)
+                    this.input.Text = this.input.Text.Remove(this.input.Text.Length - 1);
+                return;
+            }
+            if (input.Equals("enter"))
+            {
+                search_click(null, null);
+                return;
+            }
+            if (this.input.Text.Length < 14)
+                this.input.Text = this.input.Text + input;
+        }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
@@ -174,6 +177,16 @@ namespace QuerySystem
                     setGridView();
                 }
             }
+        }
+
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+            Click("1");
+        }
+
+        private void Button_Click2(object sender, RoutedEventArgs e)
+        {
+            Click("2");
         }
 
     }

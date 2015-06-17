@@ -8,14 +8,8 @@ using Newtonsoft.Json.Linq;
 using QuerySystem.Model;
 using Newtonsoft.Json;
 using QuerySystem.Exceptions;
-<<<<<<< HEAD
 using System.Windows;
-=======
-<<<<<<< HEAD
-using System.Windows;
-=======
->>>>>>> 2ddb89af065ba1ee0ee9740abed07574e6ff1249
->>>>>>> f9601b9d7e3979bd8539f8f26efd45691647aff2
+
 
 namespace QuerySystem
 {
@@ -32,10 +26,7 @@ namespace QuerySystem
             request.AddHeader("X-Username", username);
             request.AddHeader("X-Password", password);
             IRestResponse response = client.Execute(request);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f9601b9d7e3979bd8539f8f26efd45691647aff2
+
             try
             {
                 token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
@@ -45,17 +36,12 @@ namespace QuerySystem
             {
                 MessageBox.Show("登陆失败");
             }
-                         
-<<<<<<< HEAD
-=======
-=======
+
             token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
             getSemester();
                
             //Console.WriteLine("login failed");
                
->>>>>>> 2ddb89af065ba1ee0ee9740abed07574e6ff1249
->>>>>>> f9601b9d7e3979bd8539f8f26efd45691647aff2
            
 
             return true;
