@@ -32,7 +32,7 @@ namespace QuerySystem
 
         }
 
-        public static bool getSemester()
+        private static bool getSemester()
         {
             var client = new RestClient(API_URL);
             var request = new RestRequest("/api/semester/current", Method.GET);
@@ -44,16 +44,58 @@ namespace QuerySystem
                     JObject semesterJObject = JObject.Parse(response.Content);
 
                     semester = (int)semesterJObject["data"]["id"];
-                    //getReservation(0);
-                    //getReservation(1);
-
                 }
 
             });
             return true;
         }
 
-        public static ReservationList getStudentReservationList(int accountID, int pageSize, int pageNumber)
+        public static ReservationList getReservation(int accountID, int pageSize, int pageNumber)
+        {
+            Account account = getAccount(accountID);
+            if (account.role.Equals("NOR_TEACHER"))
+            {
+                return getTeacherReservationList(accountID, pageSize, pageNumber);
+            }
+            else if (account.role.Equals("ALL_TEACHER"))
+            {
+                return getLabTeacherReservationList(accountID, pageSize, pageNumber);
+            }
+            else if (account.role.Equals("STUDENT"))
+            {
+                return getClazzReservationList(accountID, pageSize, pageNumber);
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        private static Account getAccount(int accountID)
+        {
+            var client = new RestClient(API_URL);
+            String request_url = String.Format("api/account?number={0}", accountID);
+            var request = new RestRequest(request_url, Method.GET);
+            request.AddHeader("X-Auth-Token", token);
+            IRestResponse response = client.Execute(request);
+            var content = response.Content; // raw content as string
+            Account account = null;
+            if (response.StatusCode.ToString() == "OK")
+            {
+                JObject accountJObject = JObject.Parse(content);
+
+                JArray accountData = (JArray)accountJObject["data"];
+
+                account = JsonConvert.DeserializeObject<Account>(accountData.ToString(),
+                new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
+                return account;
+            }
+
+            return account;
+        }
+
+        private static ReservationList getStudentReservationList(int accountID, int pageSize, int pageNumber)
         {
             var client = new RestClient(API_URL);
             String request_url = String.Format("/api/reservation/student/{0}/page/{1}/{2}?semester={3}&type=student", accountID, pageSize, pageNumber, semester);
@@ -72,7 +114,7 @@ namespace QuerySystem
             return null;
         }
 
-        public static ReservationList getClazzReservationList(int accountID, int pageSize, int pageNumber)
+        private static ReservationList getClazzReservationList(int accountID, int pageSize, int pageNumber)
         {
             var client = new RestClient(API_URL);
             String request_url = String.Format("/api/reservation/student/{0}/page/{1}/{2}?semester={3}&type=clazz", accountID, pageSize, pageNumber, semester);
@@ -92,10 +134,30 @@ namespace QuerySystem
             return null; ;
         }
 
-        public static ReservationList getTeacherReservationList(int accountID, int pageSize, int pageNumber)
+        private static ReservationList getTeacherReservationList(int accountID, int pageSize, int pageNumber)
         {
             var client = new RestClient(API_URL);
             String request_url = String.Format("/api/reservation/teacher/{0}/page/{1}/{2}?semester={3}&status=APPROVED", accountID, pageSize, pageNumber, semester);
+            var request = new RestRequest(request_url, Method.GET);
+            request.AddHeader("X-Auth-Token", token);
+            IRestResponse response = client.Execute(request);
+            var content = response.Content; // raw content as string
+            content = content.Replace(@"@", "$");
+            if (response.StatusCode.ToString() == "OK")
+            {
+                ReservationList reservationList = JsonConvert.DeserializeObject<ReservationList>(content.ToString(),
+                    new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
+                return reservationList;
+            }
+
+
+            return null;
+        }
+
+        private static ReservationList getLabTeacherReservationList(int accountID, int pageSize, int pageNumber)
+        {
+            var client = new RestClient(API_URL);
+            String request_url = String.Format("/api/reservation/labteacher/{0}/page/{1}/{2}?semester={3}&status=APPROVED", accountID, pageSize, pageNumber, semester);
             var request = new RestRequest(request_url, Method.GET);
             request.AddHeader("X-Auth-Token", token);
             IRestResponse response = client.Execute(request);
