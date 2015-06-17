@@ -116,6 +116,7 @@ namespace QuerySystem
             NowPage = DataUtil.curPageNum;
             TotalPage = DataUtil.totalPageNum;
             TotalItem = DataUtil.totalItemNum;
+            StudentName = DataUtil.studentName;
             Time = 60;
             
         }

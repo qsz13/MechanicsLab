@@ -17,7 +17,7 @@ namespace QuerySystem
         public static int curPageNum = 0;
         public static int totalItemNum = 0;
         public static int totalPageNum = 1;//Constraint: curPageNum < totalPageNum
-
+        public static String studentName = "";
         public static int accountId =122344;
 
         public static List<MyMessage> goNextPage()
@@ -76,6 +76,7 @@ namespace QuerySystem
             curPageNum = resvList.curPageNum;
             totalItemNum = resvList.totalItemNum;
             totalPageNum = resvList.totalPageNum;
+            studentName = resvList.accountName;
 
             return result;
         }
