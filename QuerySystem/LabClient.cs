@@ -66,9 +66,10 @@ namespace QuerySystem
                 account = getAccount(accountNumber);
                 accountID = account.id;
             }
-            catch
+            catch(Exception e)
             {
-                throw new Exception("get account failed");
+                //throw new Exception("get account failed");
+                return null;
             }
            
             if (account!=null)
