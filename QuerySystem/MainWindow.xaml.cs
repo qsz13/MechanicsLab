@@ -71,13 +71,11 @@ namespace QuerySystem
             //input user id exist?
             //LabClient.Login("a091116", "222222");
             DataUtil.accountId = this.input.Text;
-            bool UserExist=true;
-            if (UserExist == true)
+         
+            if (getMessage(-1)==true)
             {
                 Timer.Start();
-                getMessage(-1);
                 setGridView();
-       
             }
             else {
                 MessageBox.Show("该用户不存在");
@@ -94,7 +92,7 @@ namespace QuerySystem
             this.SearchResultView.Visibility = Visibility.Visible;
         }
 
-        private void getMessage(int statu)
+        private bool getMessage(int statu)
         {
             MessageList.Clear();
             List<MyMessage> Temp;
@@ -105,19 +103,18 @@ namespace QuerySystem
             if (Temp == null)
             {
                 MessageList.Add(new MyMessage());
-                return;
+                return false;
             }
             for (int i = 0; i < Temp.Count; i++)
             {
                 MessageList.Add(Temp[i]);
             }
-
             NowPage = DataUtil.curPageNum;
             TotalPage = DataUtil.totalPageNum;
             TotalItem = DataUtil.totalItemNum;
             StudentName = DataUtil.studentName;
             Time = 60;
-            
+            return true;
         }
         private void close_search_view(object sender, RoutedEventArgs e)
         {
