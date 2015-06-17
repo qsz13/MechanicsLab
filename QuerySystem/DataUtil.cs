@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QuerySystem.Model;
+using QuerySystem.Exceptions;
 
 namespace QuerySystem
 {
@@ -18,7 +19,7 @@ namespace QuerySystem
         public static int totalItemNum = 0;
         public static int totalPageNum = 1;//Constraint: curPageNum < totalPageNum
         public static String studentName = "";
-        public static int accountId =122344;
+        public static String accountId ="";
 
         public static List<MyMessage> goNextPage()
         {
@@ -83,7 +84,20 @@ namespace QuerySystem
 
         private static ReservationList getDataFromServer()
         {
-            ReservationList result = LabClient.getReservation(accountId, numPerPage, curPageNum);
+            ReservationList result = null;
+            try
+            {
+                result = LabClient.getReservation(accountId, numPerPage, curPageNum);
+
+            }
+            catch (AccountNotFoundException)
+            {
+                Console.WriteLine("AccountNotFoundException");
+            }
+            catch(ServerNotResponseException)
+            {
+                Console.WriteLine("ServerNotResponseException");
+            }
             return result;
         }
 
