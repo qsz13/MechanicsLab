@@ -16,7 +16,7 @@ namespace QuerySystem
         public const int numPerPage = 8;
         public static int curPageNum = 0;
         public static int totalItemNum = 0;
-        public static int totalPageNum = 0;//Constraint: curPageNum < totalPageNum
+        public static int totalPageNum = 1;//Constraint: curPageNum < totalPageNum
 
         public static int accountId =122344;
 
