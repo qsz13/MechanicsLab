@@ -133,9 +133,9 @@ namespace DisplayBoard
                     myMsg.m_people = myMsg.m_people + resvt.labTeacherList[i].name;
                     break;
                 }
-                if (resvt.labTeacherList.Count <= 4)
+                if (resvt.labTeacherList.Count < 3)
                     myMsg.m_people = myMsg.m_people + resvt.labTeacherList[i].name + '/';
-                if (resvt.labTeacherList.Count > 4)
+                if (resvt.labTeacherList.Count >= 3)
                     if (i == resvt.labTeacherList.Count / 2 - 1)
                         myMsg.m_people = myMsg.m_people + resvt.labTeacherList[i].name;
                     else
@@ -265,7 +265,7 @@ namespace DisplayBoard
         private static MyMessage getDefaultMyMsg()
         {
             MyMessage mm = new MyMessage();
-            mm.m_lab = "没有下一个";
+            mm.m_lab = "暂无";
             mm.m_statu = "";
             mm.m_content = "";
             mm.m_class = "";

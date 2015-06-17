@@ -32,8 +32,8 @@
             </Grid>
         </Grid>
 
-        <Image Grid.Row="1" Grid.Column="1" Source="pack://siteoforigin:,,,/labimage.png" VerticalAlignment="Center" Margin="0,-30,0,0"/>
-        <Grid Name="InputSearchIDView" Grid.Row="1" Grid.Column="1">
+        <Image Grid.Row="1" Grid.Column="1" Source="pack://siteoforigin:,,,/labimage.png" VerticalAlignment="Center" Margin="0,-100"/>
+        <Grid Name="InputSearchIDView" Grid.Row="1" Grid.Column="1" d:IsHidden="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="6*" />

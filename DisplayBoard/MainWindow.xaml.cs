@@ -33,9 +33,9 @@ namespace DisplayBoard
         int Logintime = 0;
         string temp = "";
 
-        String[] media_name = { "media1.mp4", "media2.mp4"};
-        private int total_media = 2;
-        private int current_media = 2;
+        String[] media_name = { "media1.mp4", "media2.mp4", "media3.mp4" };
+        private int total_media = 3;
+        private int current_media = 3;
 
         DoubleAnimation dax = new DoubleAnimation();
         DoubleAnimation day = new DoubleAnimation();
@@ -180,6 +180,7 @@ namespace DisplayBoard
                 Viewbox vb = g.Children[i] as Viewbox;
                 TextBlock tb = vb.Child as TextBlock;
                 tb.Text = m.mm[i];
+    
             }
         }
         //private class MyMessage 
@@ -238,23 +239,27 @@ namespace DisplayBoard
                 ongoing = temp;
 
             }
-            temp = DataUtil.getNextUpcomingMyMsg();
+            MyMessage temp1;
+
+            temp1 = DataUtil.getNextUpcomingMyMsg();
            
-            if (!temp.isEqual(upcoming))
+            if (!temp1.isEqual(upcoming))
             {
-                change_content(this.upcomingAnimaView, temp);
+                change_content(this.upcomingAnimaView, temp1);
                 this.tt3_copy.BeginAnimation(TranslateTransform.XProperty, dax);
                 this.tt3_copy.BeginAnimation(TranslateTransform.YProperty, day);
                 
-                upcoming = temp;
+                upcoming = temp1;
             }
-            temp = DataUtil.getNextTomorrowMyMsg();
-            if (!temp.isEqual(tomorrow))
+            MyMessage temp2;
+
+            temp2 = DataUtil.getNextTomorrowMyMsg();
+            if (!temp2.isEqual(tomorrow))
             {
-                change_content(this.tomorrowAnimaView, temp);
+                change_content(this.tomorrowAnimaView, temp2);
                 this.tt4_copy.BeginAnimation(TranslateTransform.XProperty, dax);
                 this.tt4_copy.BeginAnimation(TranslateTransform.YProperty, day);
-                tomorrow = temp;
+                tomorrow = temp2;
             }
         }
 
