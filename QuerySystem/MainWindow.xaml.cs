@@ -77,9 +77,7 @@ namespace QuerySystem
                 Timer.Start();
                 setGridView();
             }
-            else {
-                MessageBox.Show("该用户不存在");
-            }
+
         }
 
         private void setGridView()
