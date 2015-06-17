@@ -69,7 +69,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1.3*" />
                                 <RowDefinition Height="2.3*" />
-                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="0.9*" />
                                 <RowDefinition Height="2.3*" />
                                 <RowDefinition Height="1*" />
                                 <RowDefinition Height="2*" />
@@ -179,10 +179,10 @@
                 <Button Grid.Column="2"  Content="下一页" Tag ="1" Click="Change_Page" Margin="5" />
                 <TextBox Name="Second_Title" Grid.Column="1" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Margin="0" TextWrapping="Wrap" Text="共12个班级预约 当前第 1 页 共 2 页 " />
             </Grid>
-            <DataGrid x:Name="DataGridView" SelectionMode="Single" AllowDrop="False"
+            <DataGrid x:Name="DataGridView"  CanUserResizeColumns="False" CanUserSortColumns="False" AllowDrop="False"
              Margin="0"  Grid.Row="2" IsReadOnly="True" VerticalContentAlignment="Center"
-            RowHeight="40" AutoGenerateColumns="False" ItemsSource="{Binding}">
-                <DataGrid.Columns>
+            RowHeight="40"  ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                <DataGrid.Columns >
                 <DataGridTextColumn 
                     Header="预约号" 
                     Width="2*"
