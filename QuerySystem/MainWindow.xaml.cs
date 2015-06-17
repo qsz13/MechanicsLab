@@ -30,7 +30,7 @@ namespace QuerySystem
         {
             InitializeComponent();
             initTimer();
-            this.keyboard.Visibility = Visibility.Hidden;
+//this.keyboard.Visibility = Visibility.Hidden;
             this.SearchResultView.Visibility = Visibility.Hidden;
         }
         private void initTimer()
@@ -58,20 +58,21 @@ namespace QuerySystem
         private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
         {
             this.input.Text = "12345";
-            this.keyboard.Visibility = Visibility.Visible;
+         //   this.keyboard.Visibility = Visibility.Visible;
         }
 
         private void search_click(object sender, RoutedEventArgs e)
         {
-            this.keyboard.Visibility = Visibility.Hidden;
+       //     this.keyboard.Visibility = Visibility.Hidden;
             //input user id exist?
+            LabClient.Login("a091116", "222222");
             String a = this.input.Text;
-
+            DataUtil.accountId=Int32.Parse(a);
             bool UserExist=true;
             if (UserExist == true)
             {
                 Timer.Start();
-                getMessage(1);
+                getMessage(-1);
                 setGridView();
                 //this.DataGridView.AutoGenerateColumns = true;
             }
@@ -90,18 +91,29 @@ namespace QuerySystem
             this.SearchResultView.Visibility = Visibility.Visible;
         }
 
-        private void getMessage(int pagenum)
+        private void getMessage(int statu)
         {
+            NowPage = DataUtil.curPageNum;
+            TotalPage = DataUtil.totalPageNum;
+            TotalItem = DataUtil.totalItemNum;
+            Time = 60;
             MessageList.Clear();
-
-            for (int i = 0; i < 2+pagenum; i++)
+            List<MyMessage> Temp;
+            if (statu == -1)
+                Temp = DataUtil.goPriviousPage();
+            else
+                Temp = DataUtil.goNextPage();
+            if (Temp == null)
             {
                 MessageList.Add(new MyMessage());
+                return;
             }
+            for (int i = 0; i < Temp.Count; i++)
+            {
+                MessageList.Add(Temp[i]);
+            }
+       
             
-            TotalPage = 5;
-            TotalItem = 12;
-            Time = 60;
         }
         private void close_search_view(object sender, RoutedEventArgs e)
         {
@@ -135,7 +147,7 @@ namespace QuerySystem
         {
             this.input.Text = "";
             this.InputSearchIDView.Visibility = Visibility.Visible;
-            this.keyboard.Visibility = Visibility.Hidden;
+    //        this.keyboard.Visibility = Visibility.Hidden;
             this.SearchResultView.Visibility = Visibility.Hidden;
         }
 
@@ -148,7 +160,7 @@ namespace QuerySystem
                     return;
                 else
                 {
-                    getMessage(--NowPage);
+                    getMessage(-1);
                     setGridView();
                 }
             }
@@ -159,7 +171,7 @@ namespace QuerySystem
                     return;
                 else
                 {
-                    getMessage(++NowPage);
+                    getMessage(+1);
                     setGridView();
                 }
             }

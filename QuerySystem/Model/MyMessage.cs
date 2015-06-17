@@ -9,21 +9,21 @@ namespace QuerySystem.Model
     class MyMessage
     {
         public MyMessage(){ }
-        private String recode_id = "0";
+        private String recode_id = "-1";
 
         public String Recode_id
         {
             get { return recode_id; }
             set { recode_id = value; }
         }
-        private String date = "1999-08-01";
+        private String date = "无";
 
         public String Date
         {
             get { return date; }
             set { date = value; }
         }
-        private String time = "1,2节课程";
+        private String time = "无";
 
         public String Time
         {
@@ -31,21 +31,21 @@ namespace QuerySystem.Model
             set { time = value; }
         }
 
-        private String m_lab = "本部115";
+        private String m_lab = "无";
 
         public String Lab
         {
             get { return m_lab; }
             set { m_lab = value; }
         }
-        private String m_content = "拉伸与收缩实验";
+        private String m_content = "无";
 
         public String Content
         {
             get { return m_content; }
             set { m_content = value; }
         }
-        private String pass_statu = "已通过";
+        private String pass_statu = "无";
 
         public String Pass_statu
         {
