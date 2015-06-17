@@ -95,7 +95,7 @@ namespace QuerySystem
             catch (AccountNotFoundException)
             {
                 Console.WriteLine("AccountNotFoundException");
-                MessageBox.Show("您查询的用户不存在.请检查您的拼写");
+                MessageBox.Show("您查询的用户不存在.请检查您的输入");
             }
             catch(ServerNotResponseException)
             {
