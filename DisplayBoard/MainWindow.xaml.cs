@@ -29,7 +29,7 @@ namespace DisplayBoard
     {
         
         System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
-        int elpase = 3;
+        int elpase = 7;
         int Logintime = 0;
         string temp = "";
 
@@ -209,7 +209,7 @@ namespace DisplayBoard
             initClock();
             elpase++;
 
-            if (elpase > 4)
+            if (elpase > 10)
             {
                 change_content(this.ongoingview, ongoing);
                 change_content(this.upcomingview, upcoming);

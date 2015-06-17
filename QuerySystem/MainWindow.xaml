@@ -183,13 +183,7 @@
              Margin="0"  Grid.Row="2" IsReadOnly="True" VerticalContentAlignment="Center"
             RowHeight="40"  ItemsSource="{Binding}" AutoGenerateColumns="False" >
                 <DataGrid.Columns >
-                <DataGridTextColumn 
-                    Header="预约号" 
-                    Width="2*"
-                    
-                    Binding="{Binding Recode_id}" 
-                    FontSize="20"
-                    />
+
                     <DataGridTextColumn 
                     Header="日期" 
                     Width="2*"

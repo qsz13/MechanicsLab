@@ -24,19 +24,21 @@ namespace DisplayBoard
             var request = new RestRequest("api/token", Method.POST);
             request.AddHeader("X-Username", username);
             request.AddHeader("X-Password", password);
-            try
-            {
 
-                client.ExecuteAsync(request, response =>
+
+            client.ExecuteAsync(request, response =>
+            {
+                try
                 {
                     token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
                     getSemester();
-                    
-                });
-            }
-            catch
-            {         
-            }
+                }
+                catch
+                {
+                    MessageBox.Show("failed");
+                }
+            });
+
 
             return true;
             

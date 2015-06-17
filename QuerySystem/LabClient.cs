@@ -59,7 +59,6 @@ namespace QuerySystem
 
         public static ReservationList getReservation(int accountNumber, int pageSize, int pageNumber)
         {
-<<<<<<< HEAD
             Account account = null;
             int accountID = 0;
             try
@@ -98,28 +97,7 @@ namespace QuerySystem
                     throw new Exception("get ReservationList failed");
                 }
                
-=======
-            Account account = getAccount(accountNumber);
-            int accountID = account.id;
-            if (account!=null)
-            {
-                if (account.role.Equals("NOR_TEACHER"))
-                {
-                    return getTeacherReservationList(accountID, account.name, pageSize, pageNumber);
-                }
-                else if (account.role.Equals("ALL_TEACHER"))
-                {
-                    return getLabTeacherReservationList(accountID,account.name, pageSize, pageNumber);
-                }
-                else if (account.role.Equals("STUDENT"))
-                {
-                    return getClazzReservationList(accountID, account.name, pageSize, pageNumber);
-                }
-                else
-                {
-                    return null;
-                }
->>>>>>> 07c8a0cae39320f6af94d0f26b622737f408f386
+
             }
             else
             {
