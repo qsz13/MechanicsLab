@@ -37,12 +37,6 @@ namespace QuerySystem
                 MessageBox.Show("登陆失败");
             }
 
-            token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
-            getSemester();
-               
-            //Console.WriteLine("login failed");
-               
-           
 
             return true;
 

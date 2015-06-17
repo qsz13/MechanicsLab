@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QuerySystem.Model;
 using QuerySystem.Exceptions;
+using System.Windows;
 
 namespace QuerySystem
 {
@@ -20,6 +21,7 @@ namespace QuerySystem
         public static int totalPageNum = 1;//Constraint: curPageNum < totalPageNum
         public static String studentName = "";
         public static String accountId ="";
+        public static bool userExist = false;
 
         public static List<MyMessage> goNextPage()
         {
@@ -93,10 +95,12 @@ namespace QuerySystem
             catch (AccountNotFoundException)
             {
                 Console.WriteLine("AccountNotFoundException");
+                MessageBox.Show("您查询的用户不存在.请检查您的输入");
             }
             catch(ServerNotResponseException)
             {
                 Console.WriteLine("ServerNotResponseException");
+                MessageBox.Show("服务端未响应，连接超时，请检查您的网络连接和防火墙设置");
             }
             return result;
         }
