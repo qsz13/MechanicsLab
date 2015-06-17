@@ -230,7 +230,7 @@ namespace DisplayBoard
             //input your message
             MyMessage temp;
             temp = DataUtil.getNextOngoingMyMsg();
-            if (!temp.Equals(ongoing))
+            if (!temp.isEqual(ongoing))
             {
                 change_content(this.ongoingAnimaView, temp);
                 this.tt1_copy.BeginAnimation(TranslateTransform.XProperty, dax);
@@ -240,7 +240,7 @@ namespace DisplayBoard
             }
             temp = DataUtil.getNextUpcomingMyMsg();
            
-            if (!temp.Equals(upcoming))
+            if (!temp.isEqual(upcoming))
             {
                 change_content(this.upcomingAnimaView, temp);
                 this.tt3_copy.BeginAnimation(TranslateTransform.XProperty, dax);
@@ -249,7 +249,7 @@ namespace DisplayBoard
                 upcoming = temp;
             }
             temp = DataUtil.getNextTomorrowMyMsg();
-            if (!temp.Equals(tomorrow))
+            if (!temp.isEqual(tomorrow))
             {
                 change_content(this.tomorrowAnimaView, temp);
                 this.tt4_copy.BeginAnimation(TranslateTransform.XProperty, dax);
