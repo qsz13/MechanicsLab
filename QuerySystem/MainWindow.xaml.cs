@@ -95,10 +95,6 @@ namespace QuerySystem
 
         private void getMessage(int statu)
         {
-            NowPage = DataUtil.curPageNum;
-            TotalPage = DataUtil.totalPageNum;
-            TotalItem = DataUtil.totalItemNum;
-            Time = 60;
             MessageList.Clear();
             List<MyMessage> Temp;
             if (statu == -1)
@@ -114,7 +110,11 @@ namespace QuerySystem
             {
                 MessageList.Add(Temp[i]);
             }
-       
+
+            NowPage = DataUtil.curPageNum;
+            TotalPage = DataUtil.totalPageNum;
+            TotalItem = DataUtil.totalItemNum;
+            Time = 60;
             
         }
         private void close_search_view(object sender, RoutedEventArgs e)

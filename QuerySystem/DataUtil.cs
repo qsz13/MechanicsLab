@@ -51,7 +51,7 @@ namespace QuerySystem
         {
             List<MyMessage> result = new List<MyMessage>();
             //<GET LISTS>
-            ReservationList resvList = getDataFromServer(RequestType.Student);//For example ... need change....
+            ReservationList resvList = getDataFromServer();//For example ... need change....
 
             if (resvList == null)
             {
@@ -63,7 +63,7 @@ namespace QuerySystem
             foreach (var item in resvList.data)
             {
                 MyMessage mmTemp = new MyMessage();
-                mmTemp.Recode_id = item.id.ToString();
+                mmTemp.Recode_id = item.number;
                 mmTemp.Date = item.applyDate;//????
                 mmTemp.Time = item.slot.title;
                 mmTemp.Lab = item.lab.name;
@@ -80,6 +80,12 @@ namespace QuerySystem
             return result;
         }
 
+        private static ReservationList getDataFromServer()
+        {
+            ReservationList result = LabClient.getReservation(accountId, numPerPage, curPageNum);
+            return result;
+        }
+
         private static ReservationList getDataFromServer(RequestType requestType)
         {
 
@@ -87,13 +93,13 @@ namespace QuerySystem
             switch (requestType)
             {
                 case RequestType.Student:
-                    result = LabClient.getStudentReservationList(accountId, numPerPage, curPageNum);
+                    //result = LabClient.getStudentReservationList(accountId, numPerPage, curPageNum);
                     break;
                 case RequestType.Teacher:
-                    result = LabClient.getTeacherReservationList(accountId, numPerPage, curPageNum);
+                    //result = LabClient.getTeacherReservationList(accountId, numPerPage, curPageNum);
                     break;
                 case RequestType.Clazz:
-                    result = LabClient.getClazzReservationList(accountId, numPerPage, curPageNum);
+                    //result = LabClient.getClazzReservationList(accountId, numPerPage, curPageNum);
                     break;
                 default:
                     log("Not Recognized Request Type");
