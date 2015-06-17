@@ -30,7 +30,7 @@ namespace QuerySystem
         {
             InitializeComponent();
             initTimer();
-//this.keyboard.Visibility = Visibility.Hidden;
+            this.keyboard.Visibility = Visibility.Hidden;
             this.SearchResultView.Visibility = Visibility.Hidden;
         }
         private void initTimer()
@@ -57,13 +57,15 @@ namespace QuerySystem
         }
         private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
         {
-            this.input.Text = "12345";
-         //   this.keyboard.Visibility = Visibility.Visible;
+           // this.input.Text = "12345";
+            this.keyboard.Visibility = Visibility.Visible;
         }
 
         private void search_click(object sender, RoutedEventArgs e)
         {
-       //     this.keyboard.Visibility = Visibility.Hidden;
+            if (this.input.Text.Equals(""))
+                return;
+            this.keyboard.Visibility = Visibility.Hidden;
             //input user id exist?
             LabClient.Login("a091116", "222222");
             String a = this.input.Text;
@@ -74,7 +76,7 @@ namespace QuerySystem
                 Timer.Start();
                 getMessage(-1);
                 setGridView();
-                //this.DataGridView.AutoGenerateColumns = true;
+       
             }
             else {
                 MessageBox.Show("该用户不存在");
