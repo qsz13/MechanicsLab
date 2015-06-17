@@ -19,7 +19,7 @@ namespace QuerySystem.Model
         public int totalPageNum{get; set;}
 
 
-
+        public String accountName { get; set; }
 
     }
 }
