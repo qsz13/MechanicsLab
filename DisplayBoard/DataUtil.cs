@@ -40,8 +40,7 @@ namespace DisplayBoard
             
             //refresh all data, clear it!
             if (flag == 0) { 
-                ongoingExpMsg.Clear();
-                
+                ongoingExpMsg.Clear();   
             }
             if (flag == 1)
             {
@@ -82,7 +81,7 @@ namespace DisplayBoard
                 }
 
             }
-            DataUtil.todayExpSum = ongoingExpMsg.Count + upcomingExpMsg.Count;
+            DataUtil.todayExpSum = resvtTodayListCopy.Count;
 
         }
 
