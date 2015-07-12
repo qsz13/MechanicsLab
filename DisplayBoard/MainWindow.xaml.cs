@@ -33,9 +33,9 @@ namespace DisplayBoard
         int Logintime = 0;
         string temp = "";
 
-        String[] media_name = { "media1.mp4", "media2.mp4", "media3.mp4" };
-        private int total_media = 3;
-        private int current_media = 3;
+        
+
+
 
         DoubleAnimation dax = new DoubleAnimation();
         DoubleAnimation day = new DoubleAnimation();
@@ -48,9 +48,7 @@ namespace DisplayBoard
             initTimer();
             initClock();
             initDate();
-            initMedia();
 
-            loadMedia();
             try
             {
                 LabClient.Login("a091116", "222222");
@@ -61,52 +59,8 @@ namespace DisplayBoard
             initAnimation();
         }
 
-        private void initMedia()
-        {
-            media.MediaEnded += new RoutedEventHandler(media_MediaEnded);
-            media.Loaded += new RoutedEventHandler(media_Loaded);
-            media.Unloaded += new RoutedEventHandler(media_Unloaded);  
-        }
-
-        private void loadMedia()
-        {
-            if(current_media<total_media-1)
-            {
-                current_media++;
-            }
-            else
-            {
-                current_media = 0;
-            }
-            try
-            {
-                media.Source = new Uri(media_name[this.current_media], UriKind.RelativeOrAbsolute);
-
-            }
-            catch
-            {
-                Console.Write("can't load media");
-            }
 
 
-        }
-
-        private void media_Unloaded(object sender, RoutedEventArgs e)
-        {
-            (sender as MediaElement).Stop();  
-        }
-
-        private void media_Loaded(object sender, RoutedEventArgs e)
-        {
-            (sender as MediaElement).Play();  
-        }
-
-        private void media_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            (sender as MediaElement).Stop();
-            loadMedia();
-            (sender as MediaElement).Play();  
-        }
         private void initAnimation()
         {
             //指定起点  
@@ -264,7 +218,9 @@ namespace DisplayBoard
         }
 
         
-
+         private void Window_Loaded(object sender, RoutedEventArgs e) {
+            this.media.PlayList();
+        }
       
     }
 }

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:md="clr-namespace:MediaApplication"
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="DisplayBoard.MainWindow"
-         Title="MainWindow" WindowState="Maximized" WindowStyle="None" Cursor="None" >
+         Title="MainWindow" WindowState="Maximized" WindowStyle="None" Cursor="None" Loaded="Window_Loaded" >
     <Window.Background>
         <ImageBrush ImageSource="pack://siteoforigin:,,,/background.png"/>
     </Window.Background>
@@ -37,7 +37,8 @@
                 <Viewbox  Grid.Row="2"/>
             </Grid>
 
-        <MediaElement Name="media" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" UnloadedBehavior="Manual" LoadedBehavior="Manual" ></MediaElement>
+            <md:MediaManager x:Name="media" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" UnloadedBehavior="Manual" LoadedBehavior="Manual" ></md:MediaManager>
+
 
     </Grid>
 
