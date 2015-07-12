@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{865A7BB0-1936-4297-B364-45E9DD4198F4}</ProjectGuid>
+    <ProjectGuid>{869D94FF-8D5F-4ECF-94FA-C23A8931300F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MediaShower</RootNamespace>
-    <AssemblyName>MediaShower</AssemblyName>
+    <RootNamespace>MediaShow</RootNamespace>
+    <AssemblyName>MediaShow</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -92,18 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="title.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="labimage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

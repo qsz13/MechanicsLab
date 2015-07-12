@@ -33,9 +33,6 @@ namespace DisplayBoard
         int Logintime = 0;
         string temp = "";
 
-        
-
-
 
         DoubleAnimation dax = new DoubleAnimation();
         DoubleAnimation day = new DoubleAnimation();
