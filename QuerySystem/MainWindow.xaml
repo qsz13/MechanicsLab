@@ -112,18 +112,13 @@
                                     <ColumnDefinition Width="3.2*" />
                                     <ColumnDefinition Width="1.6*" />
                                 </Grid.ColumnDefinitions>
-<<<<<<< HEAD
-                                <Button Click="Button_Click_1" Grid.Column="3" Tag="7"  Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0.2"/>
-                                <Button  Click="Button_Click_1" Grid.Column="5" Tag="8" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0.2"/>
-                                <Button  Click="Button_Click_1"  Grid.Column="7" Tag="9" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0.2"/>
-                                <Button  Click="Button_Click_1" Grid.Column="9" Tag="0" Margin="0" Background="{x:Null}"  BorderThickness="0"  Opacity="0.2"/>
-=======
+
                                 <Button Grid.Column="1" Tag="6" Click="Button_Click_1" Margin="0" BorderThickness="0"  Opacity="0.2" />
                                 <Button Grid.Column="3" Tag="7" Click="Button_Click_1" Margin="3,0,0,0" BorderThickness="0"  Opacity="0.2"/>
                                 <Button Grid.Column="5" Tag="8" Click="Button_Click_1" Margin="4,0,0,0"  BorderThickness="0"  Opacity="0.2"/>
                                 <Button Grid.Column="7" Tag="9" Click="Button_Click_1" Margin="3,0,0,0"   BorderThickness="0"  Opacity="0.2"/>
                                 <Button Grid.Column="9" Tag="0" Click="Button_Click_1" Margin="0" BorderThickness="0"  Opacity="0.2"/>
->>>>>>> origin/master
+
                             </Grid>
                             <Grid Grid.Row="5" Margin="2">
                                 <Grid.ColumnDefinitions>

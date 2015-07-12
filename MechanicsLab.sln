@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayBoard", "DisplayBoard\DisplayBoard.csproj", "{90C6E024-E2FE-4F71-9C8B-EA5998BE7145}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuerySystem", "QuerySystem\QuerySystem.csproj", "{D073C9B8-C159-437F-89F9-BE7D0C9AA99B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaShower", "MediaShower\MediaShower.csproj", "{865A7BB0-1936-4297-B364-45E9DD4198F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,10 @@ Global
 		{D073C9B8-C159-437F-89F9-BE7D0C9AA99B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D073C9B8-C159-437F-89F9-BE7D0C9AA99B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D073C9B8-C159-437F-89F9-BE7D0C9AA99B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{865A7BB0-1936-4297-B364-45E9DD4198F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{865A7BB0-1936-4297-B364-45E9DD4198F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{865A7BB0-1936-4297-B364-45E9DD4198F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{865A7BB0-1936-4297-B364-45E9DD4198F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
