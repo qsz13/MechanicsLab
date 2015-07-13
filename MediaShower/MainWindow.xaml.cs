@@ -28,15 +28,15 @@ namespace MediaShower
         System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
         private void initTimer()
         {
-            Timer.Tick += new EventHandler(Timer_Click);
-            Timer.Interval = new TimeSpan(0, 0, 1);
-            Timer.Start();
+           // Timer.Tick += new EventHandler(Timer_Click);
+           // Timer.Interval = new TimeSpan(0, 0, 1);
+           // Timer.Start();
         }
 
         private void Timer_Click(object sender, EventArgs e)
         {
-            ScrollViewer scroll = FindVisualChild<ScrollViewer>(Pic_list);
-            scroll.ScrollToHorizontalOffset(scroll_pos++);
+           // ScrollViewer scroll = FindVisualChild<ScrollViewer>(Pic_list);
+           // scroll.ScrollToHorizontalOffset(scroll_pos++);
         }
 
 
@@ -45,6 +45,7 @@ namespace MediaShower
             InitializeComponent();
             initList();
             initTimer();
+            back_button.Visibility = Visibility.Hidden;
         }
 
         private void initList()
@@ -55,12 +56,13 @@ namespace MediaShower
                 Image image = new Image();
                 image.Source = new BitmapImage(new Uri(files[i], UriKind.RelativeOrAbsolute));
                 image.Tag = files[i];
-                image.Margin = new Thickness(100, 100, 100, 100);
+                image.Margin = new Thickness(10, 10, 10, 10);
                 image.MaxHeight = 100;
                 image.MaxWidth = 100;
                 image.MouseLeftButtonDown += ClickMethod;
-                
-                Pic_list.Items.Add(image);
+                Grid.SetRow(image, i/5);
+                Grid.SetColumn(image, i%5);
+                pic_grid.Children.Add(image);
                 
             }
         }
@@ -85,11 +87,32 @@ namespace MediaShower
         }  
         private void ClickMethod(object sender, MouseButtonEventArgs e)
         {
+            back_button.MouseLeftButtonDown += back_button_click;
+            back_button.Visibility = Visibility.Visible;
+            
             Image image = (Image)sender;
+
             String name = image.Tag.ToString();
+            
+            media.PlayList(name.Replace("png","mp4"));
+            media.MediaEnded += back_button_click;
+            pic_grid.Visibility = Visibility.Hidden;
+            
+            //MessageBox.Show(name);
           //  MediaEnded += new RoutedEventHandler(media_MediaEnded);
            // this.Source = new Uri(files[index], UriKind.RelativeOrAbsolute);
           //  this.Play();
+        }
+
+        private void back_button_click(object sender, RoutedEventArgs e)
+        {
+            back_button.MouseLeftButtonDown -= back_button_click;
+            pic_grid.Visibility = Visibility.Visible;
+            back_button.Visibility = Visibility.Hidden;
+            media.Visibility = Visibility.Hidden;
+            media.Close();
+           
+            
         }
         private void GetAllDirList(DirectoryInfo directory)
         {
