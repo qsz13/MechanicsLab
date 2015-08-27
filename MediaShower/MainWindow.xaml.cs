@@ -24,7 +24,6 @@ namespace MediaShower
     /// </summary>
     public partial class MainWindow : Window
     {
-        int scroll_pos = 0;
         System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
         private void initTimer()
         {
@@ -46,6 +45,7 @@ namespace MediaShower
             initList();
             initTimer();
             back_button.Visibility = Visibility.Hidden;
+            black_back.Visibility = Visibility.Hidden;
         }
 
         private void initList()
@@ -89,7 +89,7 @@ namespace MediaShower
         {
             back_button.MouseLeftButtonDown += back_button_click;
             back_button.Visibility = Visibility.Visible;
-            
+            black_back.Visibility = Visibility.Visible;
             Image image = (Image)sender;
 
             String name = image.Tag.ToString();
@@ -109,6 +109,7 @@ namespace MediaShower
             back_button.MouseLeftButtonDown -= back_button_click;
             pic_grid.Visibility = Visibility.Visible;
             back_button.Visibility = Visibility.Hidden;
+            black_back.Visibility = Visibility.Hidden;
             media.Visibility = Visibility.Hidden;
             media.Close();
            

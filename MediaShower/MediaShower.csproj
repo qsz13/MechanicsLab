@@ -98,13 +98,20 @@
     <Resource Include="title.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="logo.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="background.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="labimage.png" />
+    <Resource Include="title1.png" />
+    <Resource Include="title2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="logo.png" />
+    <Resource Include="back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="black.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
