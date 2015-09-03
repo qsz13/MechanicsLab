@@ -27,13 +27,22 @@ namespace MediaShower
         System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
         private void initTimer()
         {
-           // Timer.Tick += new EventHandler(Timer_Click);
-           // Timer.Interval = new TimeSpan(0, 0, 1);
-           // Timer.Start();
+            Timer.Tick += new EventHandler(Timer_Click);
+            Timer.Interval = TimeSpan.FromMilliseconds(20);
+            Timer.Start();
         }
 
         private void Timer_Click(object sender, EventArgs e)
         {
+            if (media.NaturalDuration.HasTimeSpan)
+            {
+                time_slider.Value = 10.0*media.Position.TotalSeconds / media.NaturalDuration.TimeSpan.TotalSeconds;
+            }
+            else
+            {
+                time_slider.Value = media.Position.TotalSeconds ;
+            }
+            time_slider.ToolTip = media.Position.ToString().Substring(0, 8);
            // ScrollViewer scroll = FindVisualChild<ScrollViewer>(Pic_list);
            // scroll.ScrollToHorizontalOffset(scroll_pos++);
         }
@@ -46,6 +55,7 @@ namespace MediaShower
             initTimer();
             back_button.Visibility = Visibility.Hidden;
             black_back.Visibility = Visibility.Hidden;
+            time_slider.Visibility = Visibility.Hidden;
         }
 
         private void initList()
@@ -90,6 +100,7 @@ namespace MediaShower
             back_button.MouseLeftButtonDown += back_button_click;
             back_button.Visibility = Visibility.Visible;
             black_back.Visibility = Visibility.Visible;
+            time_slider.Visibility = Visibility.Visible;
             Image image = (Image)sender;
 
             String name = image.Tag.ToString();
@@ -111,6 +122,7 @@ namespace MediaShower
             back_button.Visibility = Visibility.Hidden;
             black_back.Visibility = Visibility.Hidden;
             media.Visibility = Visibility.Hidden;
+            time_slider.Visibility = Visibility.Hidden;
             media.Close();
            
             
