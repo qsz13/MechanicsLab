@@ -28,7 +28,7 @@ namespace MediaShower
         private void initTimer()
         {
             Timer.Tick += new EventHandler(Timer_Click);
-            Timer.Interval = TimeSpan.FromMilliseconds(20);
+            Timer.Interval = TimeSpan.FromMilliseconds(50);
             Timer.Start();
         }
 
@@ -36,11 +36,7 @@ namespace MediaShower
         {
             if (media.NaturalDuration.HasTimeSpan)
             {
-                time_slider.Value = 10.0*media.Position.TotalSeconds / media.NaturalDuration.TimeSpan.TotalSeconds;
-            }
-            else
-            {
-                time_slider.Value = media.Position.TotalSeconds ;
+                time_slider.Value = media.Position.TotalMilliseconds;
             }
             time_slider.ToolTip = media.Position.ToString().Substring(0, 8);
            // ScrollViewer scroll = FindVisualChild<ScrollViewer>(Pic_list);
@@ -143,5 +139,41 @@ namespace MediaShower
         }
         private ObservableCollection<string> files = new ObservableCollection<string>();
         private string[] filters = new string[] { "*.png" };
+
+        private void time_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            int SliderValue = (int)(time_slider.Value);
+            TimeSpan ts = new TimeSpan(0, 0, 0, 0, SliderValue);
+            TimeSpan min= new TimeSpan(0,0,0,0, 500);
+            if(media.Position > ts && media.Position-ts>min)
+                media.Position = ts;
+            if(media.Position < ts && ts-media.Position > min)
+                media.Position = ts;
+ 
+        }
+        private void time_slider_Drop(object sender, DragEventArgs e)
+        {
+            int SliderValue = (int)(time_slider.Value);
+            TimeSpan ts = new TimeSpan(0, 0, 0, 0, SliderValue);
+            media.Position = ts;
+            
+        }
+
+        private void time_slider_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+           
+        }
+
+        private void time_slider_ValueChanged_1(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+        private void media_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            time_slider.Maximum = media.NaturalDuration.TimeSpan.TotalMilliseconds;
+        }
+
+
     }
 }

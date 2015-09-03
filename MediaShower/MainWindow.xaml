@@ -41,10 +41,10 @@
 
             <Image Name="black_back" Margin="0,0,0,0"  Source="black.png" />
 
-            <md:MediaManager Grid.Row="0" x:Name="media" >
+            <md:MediaManager Grid.Row="0" x:Name="media" MediaOpened="media_MediaOpened">
             </md:MediaManager>
-            
-            <Slider Grid.Row="1" Name="time_slider" Margin="0,0,0,0" VerticalAlignment="Bottom" Cursor="None" IsEnabled="False" />
+
+            <Slider Grid.Row="1" x:Name="time_slider" Margin="0,0,0,0" VerticalAlignment="Bottom" Cursor="None" IsMoveToPointEnabled="True" ValueChanged="time_slider_ValueChanged" />
 
             <Grid  Name="pic_grid" Margin="40,40,40,40" >
                 <Grid.RowDefinitions>
