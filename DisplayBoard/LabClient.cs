@@ -103,9 +103,6 @@ namespace DisplayBoard
                     LabUtil.reservationTomorrowList = reservation;
                 }
             }
-            
-            
-
 
             //ioc.yiliang.me/api/reservation/semester/3/list/all?startDate=2015-06-09&endDate=2015-06-09
             return true;
@@ -135,18 +132,8 @@ namespace DisplayBoard
 
                 }
             }
-
-
-
             return true;
         }
-
-
-
-
-        
-
-
 
     }
 }

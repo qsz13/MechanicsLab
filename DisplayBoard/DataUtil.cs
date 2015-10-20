@@ -61,7 +61,8 @@ namespace DisplayBoard
                 int resu = compaireTime(item.slot.startTime, item.slot.endTime);
                 if (resu == -1) continue;
                 MyMessage mmTemp = convertResvtToMyMsg(item, flag);
-
+                if (mmTemp == null)
+                    continue;
                 if (resu == 0&&flag==0)
                 {
                     currSlotNo = item.slot.slotNo;//record slot no.
@@ -93,6 +94,8 @@ namespace DisplayBoard
             foreach (var item in tomorrowList)
             {
                 MyMessage mmTemp = convertResvtToMyMsg(item, 2);
+                if (mmTemp == null)
+                    continue;
                 mmTemp.m_statu = "第"+i+"个 - "+mmTemp.m_statu;
                 tomorrowExpMsg.Add(mmTemp);
                 i++;
@@ -105,15 +108,49 @@ namespace DisplayBoard
          **/
         private static MyMessage convertResvtToMyMsg(Reservation resvt, int flag)
         {
+            if (resvt == null)
+            {
+                return null;
+            }
             MyMessage myMsg = new MyMessage();
-            myMsg.m_lab = resvt.lab.name;
-            myMsg.m_statu = "时段" + resvt.slot.slotNo;
+            if (resvt.lab == null)
+            {
+                myMsg.m_lab = "无";
+            }
+            else
+            {
+                myMsg.m_lab = resvt.lab.name;
+            }
+
+            if (resvt.slot == null)
+            {
+                myMsg.m_statu = "";
+            }
+            else
+            {
+                myMsg.m_statu = "时段" + resvt.slot.slotNo;
+            }
+
             if (flag != 2)
             {
                 myMsg.m_statu += " - " + ((flag == 0) ? "正在进行" : "即将进行");
             }
-            myMsg.m_content = resvt.experiment.name;
-            if (resvt.clazz.teacher==null)
+
+            if (resvt.experiment == null)
+            {
+                myMsg.m_content = "无";
+            }
+            else
+            {
+                myMsg.m_content = resvt.experiment.name;
+            }
+            
+
+            if (resvt.clazz == null)
+            {
+                myMsg.m_class = "无";
+            }
+            else if ( resvt.clazz.teacher == null)
             {
                 myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " ";
 
@@ -121,10 +158,13 @@ namespace DisplayBoard
             else
             {
                 myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " " + resvt.clazz.teacher.name;
-
             }
-            myMsg.m_people = "";
 
+            myMsg.m_people = "";
+            if (resvt.labTeacherList == null) {
+                myMsg.m_people = "无";
+            }
+            else
             for (int i = 0; i < resvt.labTeacherList.Count;i++ )
             {
                 if (i == resvt.labTeacherList.Count - 1)

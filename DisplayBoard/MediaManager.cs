@@ -62,6 +62,6 @@ namespace MediaApplication
 
         private ObservableCollection<string> files = new ObservableCollection<string>();
         private int index = 0;
-        private string[] filters = new string[] { "*.mp4" };
+        private string[] filters = new string[] { "*.mp4","*.wmv" };
     }
 }
