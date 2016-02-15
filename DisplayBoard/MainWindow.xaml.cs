@@ -48,7 +48,7 @@ namespace DisplayBoard
 
             try
             {
-                LabClient.Login("a091116", "222222");
+                LabClient.Login("1334903", "abc123");
             }
             catch {
                 Console.WriteLine("login fail");
@@ -172,7 +172,7 @@ namespace DisplayBoard
             Logintime++;
             if (Logintime > 3000)
             {
-                LabClient.Login("a091116", "222222");
+                LabClient.Login("1334903", "abc123");
                 Logintime = 0;
             }
         }

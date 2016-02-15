@@ -16,8 +16,11 @@ namespace DisplayBoard.Model
 
         public String clazzroom { get; set; }
 
-        public Course course { get; set; }
+        public String description { get; set; }
 
-        public Teacher teacher { get; set; }
+        public String studentCount { get; set; }
+        public Course course { get; set; }  
+
+        public Teacher teacher { get; set; } 
     }
 }

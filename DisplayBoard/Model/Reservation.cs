@@ -13,21 +13,22 @@ namespace DisplayBoard
 
         public String number { get; set; }
 
-        public String applyDate { get; set; }
-
+        public String personCount { get; set; }
+        public Experiment experiment { get; set; }
+        public Lab lab { get; set; }
+        public String account { get; set; }
+        public Clazz clazz { get; set; }
         public Slot slot { get; set; }
 
-        public Experiment experiment { get; set; }
+        public String applyDate { get; set; }
 
-        public Lab lab { get; set; }
+        public String remark { get; set; }
 
-        public Clazz clazz { get; set; }
+        public Status status { get; set; }
 
-        public String status { get; set; }
+        public List<LabTeacher> teachers{get;set;}
 
-        public int count { get; set; }
-
-        public List<LabTeacher> labTeacherList{get;set;}
-
+        public bool isExpire { get; set; }
+        public String timeStatus { get; set; }
     }
 }

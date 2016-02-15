@@ -15,8 +15,8 @@ namespace DisplayBoard
     {
 
         private static String token = null;
-        private static int semester;
-        private static String API_URL = "http://202.120.188.5";
+        // private static int semester;
+        private static String API_URL = "http://nevermore.daiguanwang.cn/";
         
         public static bool Login(String username, String password)
         {
@@ -28,10 +28,15 @@ namespace DisplayBoard
 
             client.ExecuteAsync(request, response =>
             {
+
                 try
                 {
-                    token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
-                    getSemester();
+                    //don't need semester and token now.
+                    //token = response.Headers.ToList().Find(x => x.Name == "X-Auth-Token").Value.ToString();
+                    //getSemester();
+                    getReservation(0);
+                    getReservation(1);
+
                 }
                 catch
                 {
@@ -43,7 +48,8 @@ namespace DisplayBoard
             return true;
             
         }
-        
+        /* 
+         * don't need this function anymore. labteacher list contained in the reservation now.
         public static bool getSemester()
         {
             var client = new RestClient(API_URL);
@@ -59,22 +65,20 @@ namespace DisplayBoard
                         getReservation(0);
                         getReservation(1);
                         Console.WriteLine("get semester");
-
                 }
-               
-                   
-                
             });
-
+       
 
             return true;
-        }
+        }*/
         
         public static bool getReservation(int day)
         {
+
             var client = new RestClient(API_URL);
-            String request_url = String.Format("/api/reservation/semester/{0}/list/all?startDate={1}&endDate={2}&status=APPROVED",
-                semester, DateTime.Now.AddDays(day).ToString("yyyy-MM-dd"), DateTime.Now.AddDays(day).ToString("yyyy-MM-dd"));
+            String request_url = String.Format("/api/reservation/reservations?scope=all&startDate={0}T00:00:00.000Z&endDate={1}T00:00:00.000Z",
+                DateTime.Now.AddDays(day).ToString("yyyy-MM-dd"), DateTime.Now.AddDays(day+1).ToString("yyyy-MM-dd"));
+            System.Console.WriteLine(request_url);
             var request = new RestRequest(request_url, Method.GET);
 
             request.AddHeader("X-Auth-Token", token);
@@ -90,10 +94,8 @@ namespace DisplayBoard
 
                 List<Reservation> reservation = JsonConvert.DeserializeObject<List<Reservation>>(reservationData.ToString(), 
                     new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
-
-
-                getLabTeacher(reservation);
-
+                //getLabTeacher(reservation);
+                filterApply(reservation);
                 if(day == 0)
                 {
                     LabUtil.reservationTodayList = reservation;
@@ -106,13 +108,27 @@ namespace DisplayBoard
 
             //ioc.yiliang.me/api/reservation/semester/3/list/all?startDate=2015-06-09&endDate=2015-06-09
             return true;
-
         }
+        public static bool filterApply(List<Reservation> reserationList)
+        {
+            int count = reserationList.Count;
+            while (count>0) 
+            {
+                count--;
+                var r = reserationList.ElementAt(count);
+                if (r.status.code != "APPROVED")
+                {
+                    reserationList.RemoveAt(count);
+                }
+            }
 
+            return true;
+        }
         public static bool getLabTeacher(List<Reservation> reserationList)
         {
-            foreach(var r in reserationList)
+            /*foreach(var r in reserationList)
             {
+                r.labTeacherList = r.labTeacherList;
                 int rid = r.id;
                 var client = new RestClient(API_URL);
                 String request_url = String.Format("/api/reservation/{0}/labteachers",rid);
@@ -131,7 +147,7 @@ namespace DisplayBoard
                      r.labTeacherList = labTeacherList;
 
                 }
-            }
+            }*/
             return true;
         }
 

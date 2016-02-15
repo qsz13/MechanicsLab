@@ -13,17 +13,12 @@ namespace DisplayBoard.Model
         public String number { get; set; }
 
         public String name { get; set; }
-
+        public int capacity { get; set; }
+        public int machineCount { get; set; }
         public String description { get; set; }
 
         public bool active { get; set; }
-
-        public int capacity { get; set; }
-
-        public int machineCount { get; set; }
-
         public String status { get; set; }
-
 
     }
 }

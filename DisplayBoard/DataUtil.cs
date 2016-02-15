@@ -153,7 +153,6 @@ namespace DisplayBoard
             else if ( resvt.clazz.teacher == null)
             {
                 myMsg.m_class = resvt.clazz.course.number + " " + resvt.clazz.course.name + " ";
-
             }
             else
             {
@@ -161,27 +160,27 @@ namespace DisplayBoard
             }
 
             myMsg.m_people = "";
-            if (resvt.labTeacherList == null) {
+            if (resvt.teachers == null) {
                 myMsg.m_people = "无";
             }
             else
-            for (int i = 0; i < resvt.labTeacherList.Count;i++ )
+            for (int i = 0; i < resvt.teachers.Count;i++ )
             {
-                if (i == resvt.labTeacherList.Count - 1)
+                if (i == resvt.teachers.Count - 1)
                 {
-                    myMsg.m_people = myMsg.m_people + resvt.labTeacherList[i].name;
+                    myMsg.m_people = myMsg.m_people + resvt.teachers[i].name;
                     break;
                 }
-                if (resvt.labTeacherList.Count < 3)
-                    myMsg.m_people = myMsg.m_people + resvt.labTeacherList[i].name + '/';
-                if (resvt.labTeacherList.Count >= 3)
-                    if (i == resvt.labTeacherList.Count / 2 - 1)
-                        myMsg.m_people = myMsg.m_people + resvt.labTeacherList[i].name;
+                if (resvt.teachers.Count < 3)
+                    myMsg.m_people = myMsg.m_people + resvt.teachers[i].name + '/';
+                if (resvt.teachers.Count >= 3)
+                    if (i == resvt.teachers.Count / 2 - 1)
+                        myMsg.m_people = myMsg.m_people + resvt.teachers[i].name;
                     else
-                        if (i == resvt.labTeacherList.Count / 2)
-                            myMsg.m_people = myMsg.m_people + '\n' + resvt.labTeacherList[i].name + '/';
+                        if (i == resvt.teachers.Count / 2)
+                            myMsg.m_people = myMsg.m_people + '\n' + resvt.teachers[i].name + '/';
                         else
-                            myMsg.m_people = myMsg.m_people + resvt.labTeacherList[i].name + '/';
+                            myMsg.m_people = myMsg.m_people + resvt.teachers[i].name + '/';
             }
             return myMsg;
         }

@@ -66,10 +66,13 @@
     <Compile Include="Model\Clazz.cs" />
     <Compile Include="Model\Course.cs" />
     <Compile Include="Model\Experiment.cs" />
+    <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\Lab.cs" />
     <Compile Include="Model\LabTeacher.cs" />
     <Compile Include="Model\MyMessage.cs" />
+    <Compile Include="Model\Permissions.cs" />
     <Compile Include="Model\Reservation.cs" />
+    <Compile Include="Model\Roles.cs" />
     <Compile Include="Model\Slot.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -86,6 +89,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Status.cs" />
     <Compile Include="Model\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
