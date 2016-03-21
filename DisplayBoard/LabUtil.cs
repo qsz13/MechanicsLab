@@ -8,6 +8,7 @@ namespace DisplayBoard
 {
     class LabUtil
     {
+        public static Boolean is_connected = true;
         public static List<Reservation> reservationTodayList;
 
         public static List<Reservation> reservationTomorrowList;

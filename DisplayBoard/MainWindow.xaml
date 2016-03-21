@@ -64,7 +64,7 @@
                         </Grid.RowDefinitions>
 
                         <Viewbox  Grid.Row="0">
-                            <TextBlock x:Name="clock" Foreground="White" Text="10:25"/>
+                            <TextBlock x:Name="clock" Foreground="White" Text="10:25" />
                         </Viewbox>
                         <Viewbox  Grid.Row="1">
                             <TextBlock x:Name="date_cn" Foreground="White" Text="2015.6.9 星期二 今日实验：5" Margin="20,0"/>
@@ -84,7 +84,7 @@
                             <RowDefinition Height="2*" />
                         </Grid.RowDefinitions>
                         <Viewbox  Grid.Row="0">
-                            <TextBlock  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="扭转实验室" Margin="0,5,0,0"/>
+                            <TextBlock   Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="扭转实验室" Margin="0,5,0,0"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="1">
                             <TextBlock Foreground="#FFFF6701" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"><Run Text="时段 2- 正在进行"/></TextBlock>
@@ -194,7 +194,7 @@
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <Viewbox  Grid.Row="0">
-                            <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="明日预告" Margin="3"/>
+                            <TextBlock Name="tomo_board" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="明日预告" Margin="3"/>
                         </Viewbox>
                         <Viewbox  Grid.Row="1">
                             <TextBlock Name ="tomo_test" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="明日实验：6"/>

@@ -16,7 +16,7 @@ namespace DisplayBoard
 
         private static String token = null;
         // private static int semester;
-        private static String API_URL = "http://nevermore.daiguanwang.cn/";
+        private static String API_URL = "http://labcom.tongji.edu.cn/";
         
         public static bool Login(String username, String password)
         {
@@ -36,11 +36,11 @@ namespace DisplayBoard
                     //getSemester();
                     getReservation(0);
                     getReservation(1);
-
                 }
                 catch
                 {
-                    MessageBox.Show("failed");
+                    DataUtil.is_connected = false;
+                    LabUtil.is_connected = false;
                 }
             });
 
@@ -92,20 +92,26 @@ namespace DisplayBoard
 
                 JArray reservationData = (JArray)reservationJObject["data"];
 
-                List<Reservation> reservation = JsonConvert.DeserializeObject<List<Reservation>>(reservationData.ToString(), 
+                List<Reservation> reservation = JsonConvert.DeserializeObject<List<Reservation>>(reservationData.ToString(),
                     new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
                 //getLabTeacher(reservation);
                 filterApply(reservation);
-                if(day == 0)
+                if (day == 0)
                 {
                     LabUtil.reservationTodayList = reservation;
                 }
-                else if(day==1)
+                else if (day == 1)
                 {
                     LabUtil.reservationTomorrowList = reservation;
                 }
+                DataUtil.is_connected = true;
+                LabUtil.is_connected = true;
             }
-
+            else
+            {
+                DataUtil.is_connected = false;
+                LabUtil.is_connected = false;
+            }
             //ioc.yiliang.me/api/reservation/semester/3/list/all?startDate=2015-06-09&endDate=2015-06-09
             return true;
         }

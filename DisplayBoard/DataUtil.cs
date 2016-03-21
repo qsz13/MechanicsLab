@@ -17,6 +17,7 @@ namespace DisplayBoard
         public static List<MyMessage> ongoingExpMsg = new List<MyMessage>();//Ongoing Experiment Messages
         public static List<MyMessage> upcomingExpMsg = new List<MyMessage>();//Upcoming Experiment Messages
         public static List<MyMessage> tomorrowExpMsg = new List<MyMessage>();//Tomorrow Experiment Messages
+        public static Boolean is_connected = true;
         private static int iOngoing=0, iUpcoming=0, iTomorrow=0,iwaitOngoint=0;
         private static int currSlotNo=0;
 

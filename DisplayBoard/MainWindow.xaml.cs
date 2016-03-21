@@ -45,14 +45,7 @@ namespace DisplayBoard
             initTimer();
             initClock();
             initDate();
-
-            try
-            {
-                LabClient.Login("1334903", "abc123");
-            }
-            catch {
-                Console.WriteLine("login fail");
-            }
+            LabClient.Login("1334903", "abc123");
             initAnimation();
         }
 
@@ -89,7 +82,34 @@ namespace DisplayBoard
                 clock.Text = d.Hour + " : 0" + d.Minute;
             else
                 clock.Text = d.Hour + " : " + d.Minute;
-            
+
+            if (!DataUtil.is_connected && clock.Foreground != Brushes.Gray)
+            {
+                clock.Foreground = Brushes.Gray;
+                date_cn.Foreground = Brushes.Gray;
+                tomo_board.Foreground = Brushes.Gray;
+                tomo_test.Foreground = Brushes.Gray;
+                change_color(this.ongoingAnimaView);
+                change_color(this.upcomingAnimaView);
+                change_color(this.tomorrowAnimaView);
+                change_color(this.ongoingview);
+                change_color(this.upcomingview);
+                change_color(this.tomorrowview);
+            }
+            else if (DataUtil.is_connected && clock.Foreground == Brushes.Gray)
+            {
+                clock.Foreground = Brushes.White;
+                date_cn.Foreground = Brushes.White;
+                tomo_board.Foreground = Brushes.White;
+                tomo_test.Foreground = Brushes.White;
+                change_color(this.ongoingAnimaView);
+                change_color(this.upcomingAnimaView);
+                change_color(this.tomorrowAnimaView);
+                change_color(this.ongoingview);
+                change_color(this.upcomingview);
+                change_color(this.tomorrowview);
+            }
+
         }
 
         private void initDate()
@@ -127,13 +147,35 @@ namespace DisplayBoard
         private void change_content(Grid g,MyMessage m)
         {
             m.getmm();
+            change_color(g);
             for(int i=0;i<5;i++){
                 Viewbox vb = g.Children[i] as Viewbox;
                 TextBlock tb = vb.Child as TextBlock;
+
                 tb.Text = m.mm[i];
-    
+
             }
         }
+
+        private void change_color(Grid g)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Viewbox vb = g.Children[i] as Viewbox;
+                TextBlock tb = vb.Child as TextBlock;
+                if (DataUtil.is_connected == false && tb.Foreground != Brushes.Gray)
+                {
+                    tb.Uid = tb.Foreground.ToString();
+                    tb.Foreground = Brushes.Gray;
+                }
+                else if (DataUtil.is_connected && tb.Foreground == Brushes.Gray)
+                {
+                    Color color1 = (Color)System.Windows.Media.ColorConverter.ConvertFromString(tb.Uid);
+                    tb.Foreground = new SolidColorBrush(color1);
+                }
+            }
+        }
+
         //private class MyMessage 
         //{
         //    public MyMessage(String s){
@@ -170,7 +212,7 @@ namespace DisplayBoard
                 Start_animation();
             }
             Logintime++;
-            if (Logintime > 3000)
+            if (Logintime > 6 || DataUtil.is_connected == false)
             {
                 LabClient.Login("1334903", "abc123");
                 Logintime = 0;
