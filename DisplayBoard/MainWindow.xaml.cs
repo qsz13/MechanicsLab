@@ -212,7 +212,7 @@ namespace DisplayBoard
                 Start_animation();
             }
             Logintime++;
-            if (Logintime > 6 || DataUtil.is_connected == false)
+            if (Logintime > 600 || DataUtil.is_connected == false)
             {
                 LabClient.Login("1334903", "abc123");
                 Logintime = 0;
