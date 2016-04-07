@@ -39,8 +39,6 @@ namespace DisplayBoard
                 }
                 catch
                 {
-                    DataUtil.is_connected = false;
-                    LabUtil.is_connected = false;
                 }
             });
 
@@ -71,46 +69,84 @@ namespace DisplayBoard
 
             return true;
         }*/
-        
-        public static bool getReservation(int day)
+        public static bool testNextwork()
         {
-
-            var client = new RestClient(API_URL);
-            String request_url = String.Format("/api/reservation/reservations?scope=all&startDate={0}T00:00:00.000Z&endDate={1}T00:00:00.000Z",
-                DateTime.Now.AddDays(day).ToString("yyyy-MM-dd"), DateTime.Now.AddDays(day+1).ToString("yyyy-MM-dd"));
-            System.Console.WriteLine(request_url);
-            var request = new RestRequest(request_url, Method.GET);
-
-            request.AddHeader("X-Auth-Token", token);
-
-            IRestResponse response = client.Execute(request);
-            var content = response.Content; // raw content as string
-            content = content.Replace(@"@", "$");
-            if (response.StatusCode.ToString() == "OK")
+            int day = 0;
+            try
             {
-                JObject reservationJObject = JObject.Parse(content);
+                var client = new RestClient(API_URL);
+                String request_url = String.Format("/api/reservation/reservations?scope=all&startDate={0}T00:00:00.000Z&endDate={1}T00:00:00.000Z",
+                    DateTime.Now.AddDays(day).ToString("yyyy-MM-dd"), DateTime.Now.AddDays(day + 1).ToString("yyyy-MM-dd"));
+                System.Console.WriteLine(request_url);
+                var request = new RestRequest(request_url, Method.GET);
 
-                JArray reservationData = (JArray)reservationJObject["data"];
+                request.AddHeader("X-Auth-Token", token);
 
-                List<Reservation> reservation = JsonConvert.DeserializeObject<List<Reservation>>(reservationData.ToString(),
-                    new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
-                //getLabTeacher(reservation);
-                filterApply(reservation);
-                if (day == 0)
+                IRestResponse response = client.Execute(request);
+                var content = response.Content; // raw content as string
+                content = content.Replace(@"@", "$");
+                if (response.StatusCode.ToString() == "OK")
                 {
-                    LabUtil.reservationTodayList = reservation;
+                    
+                    DataUtil.is_connected = true;
+                    LabUtil.is_connected = true;
                 }
-                else if (day == 1)
+                else
                 {
-                    LabUtil.reservationTomorrowList = reservation;
+                    DataUtil.is_connected = false;
+                    LabUtil.is_connected = false;
                 }
-                DataUtil.is_connected = true;
-                LabUtil.is_connected = true;
             }
-            else
+            catch
             {
                 DataUtil.is_connected = false;
                 LabUtil.is_connected = false;
+            }
+            //ioc.yiliang.me/api/reservation/semester/3/list/all?startDate=2015-06-09&endDate=2015-06-09
+            return true;
+        }
+        public static bool getReservation(int day)
+        {
+            try
+            {
+                var client = new RestClient(API_URL);
+                String request_url = String.Format("/api/reservation/reservations?scope=all&startDate={0}T00:00:00.000Z&endDate={1}T00:00:00.000Z",
+                    DateTime.Now.AddDays(day).ToString("yyyy-MM-dd"), DateTime.Now.AddDays(day + 1).ToString("yyyy-MM-dd"));
+                System.Console.WriteLine(request_url);
+                var request = new RestRequest(request_url, Method.GET);
+
+                request.AddHeader("X-Auth-Token", token);
+
+                IRestResponse response = client.Execute(request);
+                var content = response.Content; // raw content as string
+                content = content.Replace(@"@", "$");
+                if (response.StatusCode.ToString() == "OK")
+                {
+                    JObject reservationJObject = JObject.Parse(content);
+
+                    JArray reservationData = (JArray)reservationJObject["data"];
+
+                    List<Reservation> reservation = JsonConvert.DeserializeObject<List<Reservation>>(reservationData.ToString(),
+                        new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
+                    //getLabTeacher(reservation);
+                    filterApply(reservation);
+                    if (day == 0)
+                    {
+                        LabUtil.reservationTodayList = reservation;
+                    }
+                    else if (day == 1)
+                    {
+                        LabUtil.reservationTomorrowList = reservation;
+                    }
+                   
+                }
+                else
+                {
+
+                }
+            }
+            catch {
+
             }
             //ioc.yiliang.me/api/reservation/semester/3/list/all?startDate=2015-06-09&endDate=2015-06-09
             return true;

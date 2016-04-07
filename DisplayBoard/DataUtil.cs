@@ -220,6 +220,7 @@ namespace DisplayBoard
                 iOngoing = 0;
                 //NEED REPLAY!
                 //GET NEW INFO ADN THEN RFRESH ALL MSGES
+                LabClient.getReservation(0);
                 if (LabUtil.reservationTodayList != null)
                 {
                     resvtTodayListCopy = LabUtil.reservationTodayList;

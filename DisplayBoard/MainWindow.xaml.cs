@@ -32,6 +32,7 @@ namespace DisplayBoard
         int elpase = 7;
         int Logintime = 0;
         string temp = "";
+        Boolean lastnetwork = true;
 
 
         DoubleAnimation dax = new DoubleAnimation();
@@ -198,10 +199,19 @@ namespace DisplayBoard
         //}
         private void Timer_Click(object sender, EventArgs e)
         {
+            LabClient.testNextwork();
+            Boolean networkchange = false;
+            if (lastnetwork != DataUtil.is_connected)
+            {
+                networkchange = true;
+                change_color(this.ongoingview);
+                change_color(this.upcomingview);
+                change_color(this.tomorrowview);
+            }
+            lastnetwork = DataUtil.is_connected;
             initDate();
             initClock();
             elpase++;
-
             if (elpase > 10)
             {
                 change_content(this.ongoingview, ongoing);
@@ -211,12 +221,14 @@ namespace DisplayBoard
                 elpase = 0;
                 Start_animation();
             }
+
             Logintime++;
-            if (Logintime > 600 || DataUtil.is_connected == false)
+            if (Logintime > 600 || DataUtil.is_connected == false || networkchange)
             {
                 LabClient.Login("1334903", "abc123");
                 Logintime = 0;
             }
+            
         }
 
         private void Start_animation()
@@ -230,7 +242,6 @@ namespace DisplayBoard
                 this.tt1_copy.BeginAnimation(TranslateTransform.XProperty, dax);
                 this.tt1_copy.BeginAnimation(TranslateTransform.YProperty, day);
                 ongoing = temp;
-
             }
             MyMessage temp1;
 
