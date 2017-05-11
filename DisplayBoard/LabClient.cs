@@ -86,8 +86,7 @@ namespace DisplayBoard
                 var content = response.Content; // raw content as string
                 content = content.Replace(@"@", "$");
                 if (response.StatusCode.ToString() == "OK")
-                {
-                    
+                {            
                     DataUtil.is_connected = true;
                     LabUtil.is_connected = true;
                 }
@@ -138,15 +137,15 @@ namespace DisplayBoard
                     {
                         LabUtil.reservationTomorrowList = reservation;
                     }
-                   
                 }
                 else
                 {
 
                 }
             }
-            catch {
-
+            catch (Exception mye)
+            {
+                System.Console.WriteLine("error");
             }
             //ioc.yiliang.me/api/reservation/semester/3/list/all?startDate=2015-06-09&endDate=2015-06-09
             return true;

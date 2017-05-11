@@ -208,7 +208,6 @@ namespace DisplayBoard
                 //:dtStart <= dtNow < dtEnd
                 return 0;
             }
-
         }
 
         public static MyMessage getNextOngoingMyMsg()
